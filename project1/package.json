@@ -1,0 +1,31 @@
+{
+    "name": "NFSFUSchools",
+    "version": "0.7.0",
+    "description": "School Website for User Account Creation and More",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/nforshifu234dev/school-website.git"
+    },
+    "keywords": [
+      "school",
+      "website",
+      "account creation",
+      "php"
+    ],
+    "author": "Shifu-Nfor Nyuiring-yoh RHagninyui",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/nforshifu234dev/school-website/issues"
+    },
+    "homepage": "https://school-website.com",
+    "socialMedia": {
+      "handle": "@nforshifu234dev"
+    },
+    "engines": {
+      "php": ">=8.1.0"
+    }
+  }
+  

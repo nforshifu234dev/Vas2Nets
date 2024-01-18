@@ -1,0 +1,285 @@
+.container
+{
+    /* border: red solid 2px; */
+    background: linear-gradient(to left, rgba(68, 196, 239, 0.8), #ffffff 90%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .left,
+.container .right
+{
+    border: var(--text-dark) solid 1px;
+    height: 100%;
+    max-height: 85%;
+    width: 40%;
+    
+}
+
+
+.container .right
+{
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow: hidden;
+    box-shadow: -3px 0 4px 2px  var(--text-dark);
+    padding: 0.2rem;
+}
+
+.container .right img
+{
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: top;
+    object-position: top;
+    border-radius: 10px;
+}
+
+.container .left
+{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 1rem;
+}
+
+.container .left
+{
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+.container .left .text
+{
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+
+.container .left .title
+{
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    /* margin: 20px 0; */
+    font-family: AsapCondensed-SemiBold;
+
+
+
+    /* font-size: 1.3rem; */
+    /* font-family: ; */
+    /* text-transform: capitalize; */
+    padding: 0.8rem;
+    margin-bottom: 10px;
+    /* color: var(--text-white); */
+    /* display: inline-block; */
+    letter-spacing: 2px;
+}
+
+.form .title
+{
+    font-size: 1.1rem !important;
+    color: var(--text-white);
+    background: var(--text-dark);
+    text-align: center;
+}
+
+
+.form
+{
+    position: relative;
+    max-height: 63%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 0.5rem;
+    margin-bottom: 15px;
+    /* border: red solid 2px; */
+}
+
+.form .input
+{
+    position: relative;
+}
+
+.form .input,
+.form .input-group .input-feild
+{
+    display: block;
+    width: 100%;
+}
+
+.form .input-group
+{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    /* border: rgb(41, 222, 29) solid 2px; */
+    margin-bottom: 10px;
+}
+
+
+.form .input-group .input-feild
+{
+    margin-right: 5px;
+    /* border: red solid 2px; */
+    width: 48%;
+    margin-bottom: 10px;
+}
+
+
+.form .input-group .input
+{
+    width: 100%;
+    /* margin: 0 2%; */
+    /* border: green solid 2px; */
+}
+
+
+
+.form .input-feild label
+{
+    display: block;
+    width: 100%;
+    text-transform: capitalize;
+}
+
+.form .input input,
+.form .input select,
+.form .input button,
+.form .input textarea
+{
+    outline: none;
+    border: none;
+    height: 40px;
+    display: block;
+    width: 100%;
+    padding: 0 1rem;
+    margin: 10px 0;
+}
+
+.form .input select,
+.form .input select option
+{
+    text-transform: capitalize;
+}
+
+.form .input input::placeholder
+{
+    text-transform: capitalize;
+}
+
+.form .input textarea
+{
+    min-height: 150px;
+    padding: 0.5rem;
+    resize: vertical;
+}
+
+.form .input button
+{
+    background: black;
+    color: var(--text-white);
+    text-transform: capitalize;
+}
+
+.optionIndicator
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.optionIndicator span
+{
+    width: 100%;
+    border: 1px solid var(--text-dark);
+}
+
+.optionIndicator span:first-of-type
+{
+    margin-right: 5px;
+}
+
+.optionIndicator span:last-of-type
+{
+    margin-left: 5px;
+}
+
+.socials
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.socials .social
+{
+    width: 30%;
+    border: 2px solid grey;
+    margin: 1.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.socials .social svg
+{
+    width:  21px;
+    height: 21px;
+}
+
+.consent-banner
+{
+    /* border: red solid 2px; */
+    height: 200px;
+    display: flex;
+}
+
+.consent-banner img
+{
+    width: 100%;
+    height: 100%;
+    -o-object-fit: contain;
+    object-fit: contain;
+    object-position: top;
+}
+
+.requiredLabel::after
+{
+    content: "*";
+    color: red;
+}
+
+.step
+{
+    display: none;
+}
+
+@media screen and (max-width: 864px) {
+    
+    .container .right
+    {
+        /* display: none; */
+        width: 80%;
+        max-height: 95% !important;
+        border-radius: 20px;
+    }
+
+    .container .left
+    {
+        width: 80%;
+        position: absolute;
+        background: rgba(235, 235, 235, 0.5);
+        max-height: 95% !important;
+        border-radius: 20px;
+    }
+
+}

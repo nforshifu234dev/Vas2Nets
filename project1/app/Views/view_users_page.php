@@ -15,7 +15,8 @@
 
     <!-- Display users from $users array -->
     <?php foreach ($users as $user): ?>
-        <p><?= $user['first_name'] ?> <?= $user['last_name'] ?></p>
+        <?php var_dump($user) ?>
+        <li><?= $user['surname'] ?> <?= $user['first_name'] ?> <?= $user['other_names'] ?></li>
     <?php endforeach; ?>
 </body>
 </html>

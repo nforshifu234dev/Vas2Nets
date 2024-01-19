@@ -21,6 +21,12 @@ function showStep(stepNumber) {
     // document.getElementById(`jsStep${stepNumber}`).style.display = 'block';
     document.getElementById(`jsStep${stepNumber}`).classList.add('dbf');
 
+    form.scrollTo({
+        top: 0,
+        duration: 500,
+        behavior: 'smooth'
+    });
+
     return true;
 
 }
@@ -28,6 +34,16 @@ function showStep(stepNumber) {
 function nextStep(nextStep) {
 
     // console.log(document.getElementById(`jsStep${nextStep}`));
+
+    // form.querySelector(`#jsStep${nextStep}`).scrollIntoView({
+    //     behavior: 'smooth',
+    //     block: 'start',
+    //     inline: 'start',
+    //     duration: 500
+    // });
+
+
+    const formBoundingRect = form.getBoundingClientRect();
 
     let number = nextStep < 1 ? 1 : nextStep > totalSteps ? totalSteps : nextStep - 1;
 
@@ -68,6 +84,7 @@ function nextStep(nextStep) {
     {
         currentStep = nextStep;
         showStep(currentStep);
+        
     }
 
 }

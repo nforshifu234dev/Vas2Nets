@@ -47,7 +47,7 @@
 
 .container .left
 {
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
 }
 

@@ -12,6 +12,7 @@
      <!-- NFSFU234 Form Validation Library CDNs -->
      <link rel="stylesheet" href="http://localhost/@libraries/NFSFU234-FormValidation/dist/css/nfsfu234FormValidation.min.css">
     <script src="http://localhost/@libraries/NFSFU234-FormValidation/dist/js/nfsfu234FormValidation.js"></script>
+    <script src="http://localhost/@itms/fontawesome-free-6.4.0-web/js/all.min.js"></script>
     <style>
  /* Add your custom styles here */
         body {
@@ -93,6 +94,12 @@
             margin-right: 10px;
         }
 
+        .generatePassword
+        {
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
     </style>
 </head>
 
@@ -157,11 +164,12 @@
         </div>
     </nav>
 
-    <div class="container mt-5">
+    <div class="container main-container mt-5">
 
      <!-- Add User Form -->
         <h2>Add New User</h2>
         <div id="form">
+            <input type="hidden" id="formURL" value="/users/new/">
             <div class="form-group">
                 <label for="surname">Surname:</label>
                 <div class="input">
@@ -204,8 +212,13 @@
             <div class="form-group">
                 <label for="user_password">Password:</label>
                 <div class="input">
-                    <input type="password" id="user_password" name="user_password" required>
+                    <input type="password" id="user_password" class="js-v-genPassword" name="user_password" required>
+                    <!-- <div class="iput cssShowPassword"> -->
+                        <div class="js-togglePassword cssShowPassword"><i class="fas fa-eye"></i></div>
+                    <!-- </div> -->
                 </div>
+
+
 
                 <div class="generatePassword" id="jsGeneratePassword">
                     Generate Password
@@ -238,97 +251,143 @@
     <script src="http://localhost/@itms/bootstrap-5.1.3/bootstrap-5.1.3/dist/js/bootstrap.min.js"></script>
 
 
+    <script src="<?= base_url('/js/admin_form.js') ?>"></script>
 
-    <script>
+    <script >
 
-const form = document.getElementById('form');
+// const form = document.getElementById('form');
 
-// Example form details object
-const formDetails = {
-    form: form, // Replace "myForm" with the ID of your form or the actual HTML element of your form (recommended)
-};
-
-
-
-const formValidator = new NFSFU234FormValidation(formDetails);
-
-// formValidator.submit();
-
-form.querySelector("button[type=submit]").addEventListener('click', ()=>{
-
-    if( formValidator.validate() )
-    {
-
-        const formDetails = formValidator.getFormDetails();
-
-        console.log(form.querySelectorAll('input').length);
-        console.log(form.querySelectorAll('select').length);
-        console.log(formDetails);
-
-        // return true;
-
-        const ajaxOptions = {
-            url: "/users/new/",
-            RequestMethod: "POST",
-            RequestHeader: {
-                "Content-Type": "application/json",
-                "X-Requested-With": "XMLHttpRequest",
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            },
-            RequestBody: {
-                formDetails
-            }
-        };
+// // Example form details object
+// const formDetails = {
+//     form: form, // Replace "myForm" with the ID of your form or the actual HTML element of your form (recommended)
+// };
 
 
-        formValidator.ajax(ajaxOptions)
-            .then((response) => {
-                // Success: Server response received in JSON format
-                console.log('Request successful', response);
 
-                let errorDetails;
+// const formValidator = new NFSFU234FormValidation(formDetails);
 
-                if ( response.status !== 'success' )
-                {
+// const generatePasswordBtn = form.querySelector('#jsGeneratePassword');
 
-                    errorDetails = {
-                        type : 'modal',
-                        message: response.message,
-                        duration: 3000,
-                        element: form,
-                        success: false,
-                    }
+// if (generatePasswordBtn) {
+//     // Function to generate and set random password
+//     const setRandomPassword = () => {
+//         const randomPassword = formValidator.generateRandomPassword();
+//         form.querySelectorAll('.js-v-genPassword').forEach(
+//             input => input.value = randomPassword
+//         );
+//     };
+
+//     // Add click event listener
+//     generatePasswordBtn.addEventListener('click', setRandomPassword);
+
+//     // Optionally, you can remove the listener after it's triggered once
+//     // generatePasswordBtn.addEventListener('click', setRandomPassword, { once: true });
+// }
+
+// if ( document.querySelector('.js-togglePassword') )
+// {
+//     formValidator.togglePasswordVisibility({ 'show': '<i class="fas fa-eye"></i>', 'hide': '<i class="fas fa-eye-slash"></i>' }, form);
+// }
+
+
+// form.querySelector("button[type=submit]").addEventListener('click', ()=>{
+
+//     // console.log(document.querySelector('.main-container'));
+
+//     const navbarHeight =document.querySelector('.navbar').offsetHeight;
+
+//     const offset =navbarHeight > 0 ? -navbarHeight : 0;
+
+//     if( formValidator.validate() )
+//     {
+
+//         const formDetails = formValidator.getFormDetails();
+
+
+//         const ajaxOptions = {
+//             url: document.getElementById('formURL').value,
+//             RequestMethod: "POST",
+//             RequestHeader: {
+//                 "Content-Type": "application/json",
+//                 "X-Requested-With": "XMLHttpRequest",
+//                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+//             },
+//             RequestBody: {
+//                 formDetails
+//             }
+//         };
+
+
+//         formValidator.ajax(ajaxOptions)
+//             .then((response) => {
+//                 // Success: Server response received in JSON format
+//                 // console.log('Request successful', response);
+
+//                 let errorDetails;
+
+//                 if ( response.status !== 'success' )
+//                 {
+
+//                     errorDetails = {
+//                         type : 'modal',
+//                         message: response.message,
+//                         duration: 4000,
+//                         element: form,
+//                         success: false,
+//                     }
                     
 
-                }
-                else
-                {
-                    errorDetails = {
-                        type : 'modal',
-                        message: response.message,
-                        duration: 3000,
-                        element: form,
-                        success: true,
-                    }
+//                 }
+//                 else
+//                 {
+//                     errorDetails = {
+//                         type : 'modal',
+//                         message: response.message,
+//                         duration: 4000,
+//                         element: form,
+//                         success: true,
+//                     }
 
-                    formValidator.reset(form);                            
-                }
+//                     formValidator.reset(form);                            
+//                 }
 
-                formValidator.displayError(errorDetails);
+//                 form.scrollIntoView({
+//                     behavior: 'smooth',
+//                     block: 'start',
+//                     inline: 'start'
+//                 });
+
+//                 window.scrollBy(0, offset);
+
+//                 // Force scroll to the top of the form even if an input is focused
+//                 window.scrollTo({
+//                     top: form.offsetTop + offset - 200,
+//                     behavior: 'smooth'
+//                 });
+
+//                 formValidator.displayError(errorDetails);
 
 
 
-            })
-            .catch((error) => {
-                // Error: AJAX request failed or rejected
-                console.error('Request failed', error);
-            });
+//             })
+//             .catch((error) => {
+//                 // Error: AJAX request failed or rejected
+//                 console.error('Request failed', error);
+//             });
 
 
 
-    }
+//     }
 
-})
+//     form.scrollIntoView({
+//         behavior: 'smooth',
+//         block: 'start',
+//         inline: 'start'
+//     });
+
+//     window.scrollBy(0, offset);
+
+// });
 
     </script>
 

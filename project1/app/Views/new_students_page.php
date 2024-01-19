@@ -97,6 +97,12 @@
             margin-right: 10px;
         }
 
+        .generatePassword
+        {
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
     </style>
 </head>
 
@@ -333,7 +339,8 @@
             <div class="form-group">
                 <label for="user_password">Password:</label>
                 <div class="input">
-                    <input type="password" id="user_password" name="user_password" required>
+                    <input type="password" id="user_password" class="js-v-genPassword" name="user_password" required>
+                    <div class="js-togglePassword cssShowPassword"><i class="fas fa-eye"></i></div>
                 </div>
 
 
@@ -346,6 +353,8 @@
             <?= csrf_field() ?>
 
             <input type="hidden" name="t&c" value="true">
+
+            <input type="hidden" id="formURL" value="/students/new/">
 
             <div class="input">
                 <button type="submit">Add User</button>
@@ -371,97 +380,98 @@
     <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
     <script src="http://localhost/@itms/bootstrap-5.1.3/bootstrap-5.1.3/dist/js/bootstrap.min.js"></script>
 
+    <script src="<?= base_url('/js/admin_form.js') ?>"></script>
 
     <script>
 
-        const form = document.getElementById('form');
+        // const form = document.getElementById('form');
 
-        // Example form details object
-        const formDetails = {
-            form: form, // Replace "myForm" with the ID of your form or the actual HTML element of your form (recommended)
-        };
+        // // Example form details object
+        // const formDetails = {
+        //     form: form, // Replace "myForm" with the ID of your form or the actual HTML element of your form (recommended)
+        // };
 
         
 
-        const formValidator = new NFSFU234FormValidation(formDetails);
+        // const formValidator = new NFSFU234FormValidation(formDetails);
 
-        // formValidator.submit();
+        // // formValidator.submit();
 
-        form.querySelector("button[type=submit]").addEventListener('click', ()=>{
+        // form.querySelector("button[type=submit]").addEventListener('click', ()=>{
 
-            if( formValidator.validate() )
-            {
+        //     if( formValidator.validate() )
+        //     {
 
-                const formDetails = formValidator.getFormDetails();
+        //         const formDetails = formValidator.getFormDetails();
 
-                console.log(form.querySelectorAll('input').length);
-                console.log(form.querySelectorAll('select').length);
-                console.log(formDetails);
+        //         console.log(form.querySelectorAll('input').length);
+        //         console.log(form.querySelectorAll('select').length);
+        //         console.log(formDetails);
 
-                // return true;
+        //         // return true;
 
-                const ajaxOptions = {
-                    url: "/students/new/",
-                    RequestMethod: "POST",
-                    RequestHeader: {
-                        "Content-Type": "application/json",
-                        "X-Requested-With": "XMLHttpRequest",
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                    },
-                    RequestBody: {
-                        formDetails
-                    }
-                };
+        //         const ajaxOptions = {
+        //             url: "/students/new/",
+        //             RequestMethod: "POST",
+        //             RequestHeader: {
+        //                 "Content-Type": "application/json",
+        //                 "X-Requested-With": "XMLHttpRequest",
+        //                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        //             },
+        //             RequestBody: {
+        //                 formDetails
+        //             }
+        //         };
 
 
-                formValidator.ajax(ajaxOptions)
-                    .then((response) => {
-                        // Success: Server response received in JSON format
-                        // console.log('Request successful', response);
+        //         formValidator.ajax(ajaxOptions)
+        //             .then((response) => {
+        //                 // Success: Server response received in JSON format
+        //                 // console.log('Request successful', response);
 
-                        let errorDetails;
+        //                 let errorDetails;
 
-                        if ( response.status !== 'success' )
-                        {
+        //                 if ( response.status !== 'success' )
+        //                 {
 
-                            errorDetails = {
-                                type : 'modal',
-                                message: response.message,
-                                duration: 3000,
-                                element: form,
-                                success: false,
-                            }
+        //                     errorDetails = {
+        //                         type : 'modal',
+        //                         message: response.message,
+        //                         duration: 3000,
+        //                         element: form,
+        //                         success: false,
+        //                     }
                             
 
-                        }
-                        else
-                        {
-                            errorDetails = {
-                                type : 'modal',
-                                message: response.message,
-                                duration: 3000,
-                                element: form,
-                                success: true,
-                            }
+        //                 }
+        //                 else
+        //                 {
+        //                     errorDetails = {
+        //                         type : 'modal',
+        //                         message: response.message,
+        //                         duration: 3000,
+        //                         element: form,
+        //                         success: true,
+        //                     }
 
-                            formValidator.reset(form);                            
-                        }
+        //                     formValidator.reset(form);                            
+        //                 }
 
-                        formValidator.displayError(errorDetails);
-
-
-
-                    })
-                    .catch((error) => {
-                        // Error: AJAX request failed or rejected
-                        console.error('Request failed', error);
-                    });
+        //                 formValidator.displayError(errorDetails);
 
 
 
-            }
+        //             })
+        //             .catch((error) => {
+        //                 // Error: AJAX request failed or rejected
+        //                 console.error('Request failed', error);
+        //             });
 
-        })
+
+
+        //     }
+
+        // })
 
     </script>
 

@@ -23,7 +23,7 @@ class ViewUsersPage extends BaseController
 
         // Set up pagination
         $pager = \Config\Services::pager();
-        $perPage = 20; // Adjust the number of records per page as needed
+        $perPage = 10; // Adjust the number of records per page as needed
 
         // Fetch users from the database and pass them to the view
         // $data['users'] = $this->userModel->getAllUsers();

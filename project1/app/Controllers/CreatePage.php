@@ -169,6 +169,17 @@ class CreatePage extends BaseController
             ];
 
             return $this->response->setStatusCode(201)->setJSON($response);
+            // return $this->response->setJSON($response)->setStatusCode(201);
+            // $response = $this->response->setJSON($response);
+            // return $response->setStatusCode(201);
+            // return $this->respondCreated($response);
+            // return $this->response->setStatusCode(201)->setJSON($response)->setHeader('Content-Type', 'application/json');
+            // return $this->response
+            //                 ->setStatusCode(201)
+            //                 ->setJSON($response)
+            //                 ->setHeader('Content-Type', 'application/json');
+
+
         }
 
     }

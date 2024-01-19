@@ -21,8 +21,8 @@ $routes->get('students/new/', 'ViewStudentsPage::new');
 $routes->post('students/new/', 'ViewStudentsPage::create');
 
 $routes->get('guardians', 'ViewGuardiansPage::index');
-$routes->get('guardians/new/', 'ViewGuardiansPage::new');
-$routes->post('guardians/new/', 'ViewGuardiansPage::create');
+// $routes->get('guardians/new/', 'ViewGuardiansPage::new');
+// $routes->post('guardians/new/', 'ViewGuardiansPage::create');
 
 // File: app/Config/Routes.php
 $routes->get('contact', 'ContactPage::index');

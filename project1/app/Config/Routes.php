@@ -41,6 +41,8 @@ $routes->get('login', 'AuthController::login');
 $routes->post('login', 'AuthController::attemptLogin');
 $routes->post('logout', 'AuthController::logout');
 
+$routes->get('dashboard', 'DashboardController::index');
+
 $routes->group('admin', ['filter' => 'auth', 'auth.roles' => ['admin']], function ($routes) {
     // Your admin routes go here
 });

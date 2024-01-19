@@ -60,6 +60,6 @@ class AuthController extends Controller
         $this->session->destroy();
         $this->response->deleteCookie('remember_me');
 
-        return redirect()->to('/');
+        return redirect()->to( base_url() );
     }
 }

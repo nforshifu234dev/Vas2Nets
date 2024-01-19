@@ -16,14 +16,8 @@ class AuthFilter implements FilterInterface
 
         // Check if the user is logged in
         if (!$session->has('user_id')) {
-            return redirect()->to('/login');
+            return redirect()->to(base_url('/login'));
         }
-
-        // Check if the route being accessed is 'login' and the user is logged in
-        if (service('uri')->getSegment(1) === 'login') {
-            return redirect()->to('/dashboard');
-        }
-
 
         // Check user role
         $userModel = new \App\Models\UserModel();

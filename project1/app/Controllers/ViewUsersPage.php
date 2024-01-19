@@ -5,8 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 
 use App\Models\UserModel;
-use App\Models\StudentModel;
-use App\Models\GuardianModel;
+use \App\Helpers\MyHelper as RandomStringGenerator;
 
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -24,7 +23,7 @@ class ViewUsersPage extends BaseController
 
         // Set up pagination
         $pager = \Config\Services::pager();
-        $perPage = 1; // Adjust the number of records per page as needed
+        $perPage = 20; // Adjust the number of records per page as needed
 
         // Fetch users from the database and pass them to the view
         // $data['users'] = $this->userModel->getAllUsers();
@@ -41,43 +40,68 @@ class ViewUsersPage extends BaseController
         return view('new_user_page');
     }
 
-    public function students()
+    function create()
     {
 
-        $studentModel = new StudentModel();
+        $request = service('request');
+        $validation = \Config\Services::validation();
 
-        // Set up pagination
-        $pager = \Config\Services::pager();
-        $perPage = 1; // Adjust the number of records per page as needed
+        // Set validation rules for all fields
+        $validationRules = [
+            'sName' => 'required|max_length[50]',
+            'fName' => 'required|max_length[50]',
+            'oNames' => 'max_length[100]', // Optional, adjust as needed
+            'email' => 'required|valid_email|max_length[100]',
+            'user_username' => 'required|max_length[50]',
+            'user_password' => 'required|min_length[8]', // Adjust as needed
+        ];
 
-        // Fetch users from the database and pass them to the view
-        // $data['users'] = $this->userModel->getAllUsers();
+        // Run validation
+        
 
-        // Fetch users from the database and pass them to the view
-        $data['users'] = $studentModel->paginate($perPage);
-        $data['pager'] = $studentModel->pager;
+        if ( $validation->setRules($validationRules)->run((array) $request->getJSON()) ) {
+            return $this->response
+                ->setStatusCode(400) // Bad Request
+                ->setJSON(['error' => $validation->getErrors()]);
+                }
 
-        return view('view_students_page', $data);
+        $requestData = $request->getJSON(true)['formDetails'];
+
+        $userId = 'USER_' . RandomStringGenerator::generateRandomString(30);
+
+        $userInserted = $this->userModel->insert([
+            'user_id' => $userId,
+            'surname' => $requestData['sName'],
+            'first_name' => $requestData['fName'],
+            'other_names' => $requestData['oNames'],
+            'email' => $requestData['email'],
+            'username' => $requestData['user_username'],  // Make sure the field exists in the request
+            'password' => password_hash($requestData['user_password'], PASSWORD_BCRYPT),
+            'role' => $requestData['role'] ?? 'student',
+            'last_login' => null,
+            'date_created' => date('Y-m-d H:i:s'),
+        ]);
+
+        if ( $userInserted )
+        {
+
+            // Return success response
+            $response = [
+                'status' => 'success',
+                'message' => 'User, guardian, and student created successfully',
+                'data' => $requestData,
+            ];
+
+            return $this->response->setStatusCode(201)->setJSON($response);
+
+        }
+
+    // Return error response
+        return $this->response
+        ->setStatusCode(200) 
+        ->setJSON(['error' => 'Failed to create user, guardian, and student']);
+
+
     }
-
-    public function guardians()
-    {
-
-        $gguardiansModel = new GuardianModel();
-
-        // Set up pagination
-        $pager = \Config\Services::pager();
-        $perPage = 1; // Adjust the number of records per page as needed
-
-        // Fetch users from the database and pass them to the view
-        // $data['users'] = $this->userModel->getAllUsers();
-
-        // Fetch users from the database and pass them to the view
-        $data['users'] = $gguardiansModel->paginate($perPage);
-        $data['pager'] = $gguardiansModel->pager;
-
-        return view('view_guardians_page', $data);
-    }
-
 
 }

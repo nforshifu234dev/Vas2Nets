@@ -76,12 +76,12 @@ class CreatePage extends BaseController
             'academic_session' => 'required|max_length[50]',
             'enrollment_type' => 'required|in_list[new,transfer]',
             'program' => 'required|max_length[100]',
-            'guardian_ame' => 'required|max_length[100]',
-            'guardian_ole' => 'required|max_length[50]',
-            'guardian_mail' => 'required|valid_email|max_length[100]',
+            'guardian_name' => 'required|max_length[100]',
+            'guardian_role' => 'required|max_length[50]',
+            'guardian_email' => 'required|valid_email|max_length[100]',
             'guardian_phone' => 'required|numeric', // Assuming it's a numeric phone number
-            'username' => 'required|max_length[50]',
-            'password' => 'required|min_length[8]', // Adjust as needed
+            'user_username' => 'required|max_length[50]',
+            'user_password' => 'required|min_length[8]', // Adjust as needed
             't&c' => 'required|in_list[1]', // Assuming the checkbox value is 1 for true
         ];
 
@@ -168,9 +168,7 @@ class CreatePage extends BaseController
                 'data' => $requestData,
             ];
 
-            return $this->response
-                ->setStatusCode(201) // Created
-                ->setJSON($response);
+            return $this->response->setStatusCode(201)->setJSON($response);
         }
 
     }
@@ -181,7 +179,7 @@ class CreatePage extends BaseController
 
 // Return error response
 return $this->response
-    ->setStatusCode(200) // Internal Server Error
+    ->setStatusCode(500) // Internal Server Error
     ->setJSON(['error' => 'Failed to create user, guardian, and student']);
 
     }

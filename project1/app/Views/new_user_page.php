@@ -4,10 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="<?= csrf_hash() ?>">
     <title>Add New User - </title>
     <!-- Include Bootstrap CSS -->
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="http://localhost/@itms/bootstrap-5.1.3/bootstrap-5.1.3/dist/css/bootstrap.min.css">
+     <!-- NFSFU234 Form Validation Library CDNs -->
+     <link rel="stylesheet" href="http://localhost/@libraries/NFSFU234-FormValidation/dist/css/nfsfu234FormValidation.min.css">
+    <script src="http://localhost/@libraries/NFSFU234-FormValidation/dist/js/nfsfu234FormValidation.js"></script>
     <style>
  /* Add your custom styles here */
         body {
@@ -157,28 +161,22 @@
 
      <!-- Add User Form -->
         <h2>Add New User</h2>
-        <form>
-        <div class="form-group">
-                <label for="surname">Surame:</label>
+        <div id="form">
+            <div class="form-group">
+                <label for="surname">Surname:</label>
                 <div class="input">
-                    <input type="text" id="surname" name="surname" required>
+                    <input type="text" id="sName" name="sName" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="firstName">First Name:</label>
                 <div class="input">
-                    <input type="text" id="firstName" name="firstName" required>
+                    <input type="text" id="fName" name="fName" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="otherNames">Other names:</label>
-                <input type="text" id="otherNames" name="otherNames" required>
-            </div>
-            <div class="form-group">
-                <label for="username">username:</label>
-                <div class="input">
-                    <input type="text" id="username" name="username" required>
-                </div>
+                <input type="text" id="oNames" name="oNames">
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
@@ -198,9 +196,15 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="phone">Password:</label>
+                <label for="user_username">username:</label>
                 <div class="input">
-                    <input type="password" id="phone" name="phone" required>
+                    <input type="text" id="user_username" name="user_username" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="user_password">Password:</label>
+                <div class="input">
+                    <input type="password" id="user_password" name="user_password" required>
                 </div>
 
                 <div class="generatePassword" id="jsGeneratePassword">
@@ -213,7 +217,7 @@
                 <button type="submit">Add User</button>
             </div>
 
-        </form>
+        </div>
 
     </div>
 
@@ -232,6 +236,103 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
     <script src="http://localhost/@itms/bootstrap-5.1.3/bootstrap-5.1.3/dist/js/bootstrap.min.js"></script>
+
+
+
+    <script>
+
+const form = document.getElementById('form');
+
+// Example form details object
+const formDetails = {
+    form: form, // Replace "myForm" with the ID of your form or the actual HTML element of your form (recommended)
+};
+
+
+
+const formValidator = new NFSFU234FormValidation(formDetails);
+
+// formValidator.submit();
+
+form.querySelector("button[type=submit]").addEventListener('click', ()=>{
+
+    if( formValidator.validate() )
+    {
+
+        const formDetails = formValidator.getFormDetails();
+
+        console.log(form.querySelectorAll('input').length);
+        console.log(form.querySelectorAll('select').length);
+        console.log(formDetails);
+
+        // return true;
+
+        const ajaxOptions = {
+            url: "/users/new/",
+            RequestMethod: "POST",
+            RequestHeader: {
+                "Content-Type": "application/json",
+                "X-Requested-With": "XMLHttpRequest",
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            RequestBody: {
+                formDetails
+            }
+        };
+
+
+        formValidator.ajax(ajaxOptions)
+            .then((response) => {
+                // Success: Server response received in JSON format
+                console.log('Request successful', response);
+
+                let errorDetails;
+
+                if ( response.status !== 'success' )
+                {
+
+                    errorDetails = {
+                        type : 'modal',
+                        message: response.message,
+                        duration: 3000,
+                        element: form,
+                        success: false,
+                    }
+                    
+
+                }
+                else
+                {
+                    errorDetails = {
+                        type : 'modal',
+                        message: response.message,
+                        duration: 3000,
+                        element: form,
+                        success: true,
+                    }
+
+                    formValidator.reset(form);                            
+                }
+
+                formValidator.displayError(errorDetails);
+
+
+
+            })
+            .catch((error) => {
+                // Error: AJAX request failed or rejected
+                console.error('Request failed', error);
+            });
+
+
+
+    }
+
+})
+
+    </script>
+
+
 </body>
 
 </html>

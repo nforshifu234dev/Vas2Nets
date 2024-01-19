@@ -24,7 +24,7 @@ class ViewGuardiansPage extends BaseController
 
         // Set up pagination
         $pager = \Config\Services::pager();
-        $perPage = 1; // Adjust the number of records per page as needed
+        $perPage = 20; // Adjust the number of records per page as needed
 
         // Fetch users from the database and pass them to the view
         // $data['users'] = $this->guardianModel->getAllUsers();

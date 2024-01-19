@@ -109,7 +109,7 @@ function listenForSubmit() {
           formValidator.ajax(AJAXOptions)
             .then((response) => {
                 // Success: Server response received in JSON format
-                console.log('Request successful', response);
+                // console.log('Request successful', response);
 
                 let errorDetails;
 

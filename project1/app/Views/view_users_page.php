@@ -108,6 +108,15 @@
                         <a class="dropdown-item" href="#">Create</a>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <!-- Example form for logout -->
+                    <form action="<?= site_url('logout') ?>" method="post">
+                        <?= csrf_field() ?>
+                        <!-- Add any additional fields or styling as needed -->
+                        <button type="submit">Logout</button>
+                    </form>
+
+                </li>
                 <!-- Add more quick links as needed -->
 
 

@@ -5,12 +5,16 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\UserModel;
 
+use Config\Services;
+
 class AuthController extends Controller
 {
+    public $session;
+
     // Load the session library in the constructor
     public function __construct()
     {
-        $this->session = \Config\Services::session();
+        $this->session = Services::session();
     }
 
     public function login()

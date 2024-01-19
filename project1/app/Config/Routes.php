@@ -7,30 +7,55 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
-// File: app/Config/Routes.php
+// Enrollment routes
 $routes->get('enroll', 'CreatePage::index');
 $routes->post('enroll', 'CreatePage::create');
 
-// File: app/Config/Routes.php
-$routes->get('users', 'ViewUsersPage::index');
-$routes->get('users/new/', 'ViewUsersPage::new');
-$routes->post('users/new/', 'ViewUsersPage::create');
+// User routes
+$routes->group('users', ['filter' => 'auth'], function ($routes) {
+    $routes->get('/', 'ViewUsersPage::index');
+    $routes->get('new', 'ViewUsersPage::new');
+    $routes->post('new', 'ViewUsersPage::create');
+});
 
-$routes->get('students', 'ViewStudentsPage::index');
-$routes->get('students/new/', 'ViewStudentsPage::new');
-$routes->post('students/new/', 'ViewStudentsPage::create');
+// Student routes
+$routes->group('students', ['filter' => 'auth'], function ($routes) {
+    $routes->get('/', 'ViewStudentsPage::index');
+    $routes->get('new', 'ViewStudentsPage::new');
+    $routes->post('new', 'ViewStudentsPage::create');
+});
 
-$routes->get('guardians', 'ViewGuardiansPage::index');
-// $routes->get('guardians/new/', 'ViewGuardiansPage::new');
-// $routes->post('guardians/new/', 'ViewGuardiansPage::create');
+// Guardian routes
+$routes->group('guardians', ['filter' => 'auth'], function ($routes) {
+    $routes->get('/', 'ViewGuardiansPage::index');
+    // Uncomment and customize the routes below as needed
+    // $routes->get('new', 'ViewGuardiansPage::new');
+    // $routes->post('new', 'ViewGuardiansPage::create');
+});
 
-// File: app/Config/Routes.php
+// Contact route
 $routes->get('contact', 'ContactPage::index');
 
-
-
-// app/Config/Routes.php
-
+// Authentication routes
 $routes->get('login', 'AuthController::login');
 $routes->post('login', 'AuthController::attemptLogin');
-$routes->get('logout', 'AuthController::logout');
+$routes->post('logout', 'AuthController::logout');
+
+$routes->group('admin', ['filter' => 'auth', 'auth.roles' => ['admin']], function ($routes) {
+    // Your admin routes go here
+});
+
+$routes->group('users', ['filter' => 'auth', 'auth.roles' => ['user', 'editor']], function ($routes) {
+    $routes->get('profile', 'UserController::profile');
+    // Add more user-related routes as needed
+});
+
+$routes->group('students', ['filter' => 'auth', 'auth.roles' => ['student', 'editor']], function ($routes) {
+    $routes->get('profile', 'StudentController::profile');
+    // Add more student-related routes as needed
+});
+
+$routes->group('guardians', ['filter' => 'auth', 'auth.roles' => ['guardian']], function ($routes) {
+    $routes->get('profile', 'GuardianController::profile');
+    // Add more guardian-related routes as needed
+});

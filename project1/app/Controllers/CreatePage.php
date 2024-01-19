@@ -3,6 +3,9 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+
+use \App\Helpers\MyHelper as RandomStringGenerator;
+
 use CodeIgniter\HTTP\ResponseInterface;
 
 class CreatePage extends BaseController
@@ -98,13 +101,13 @@ class CreatePage extends BaseController
 
         // exit;
 
-// Generate unique IDs for user and guardian
-$userId = 'USER_' . uniqid();
-$guardianId = 'GUARDIAN_' . uniqid();
+    // Generate unique IDs for user and guardian
+    $userId = 'USER_' . RandomStringGenerator::generateRandomString(30);
+    $guardianId = 'GUARDIAN_' . RandomStringGenerator::generateRandomString(30);
 
 
 
-// Insert data into the users table
+    // Insert data into the users table
     // Insert data into the users table
 
 
@@ -138,7 +141,7 @@ $guardianId = 'GUARDIAN_' . uniqid();
         $studentInserted = $studentModel->insert([
             'user_id' => $userId,
             'guardian_id' => $guardianId,
-            'surname_name' => $requestData['sName'],
+            'surname' => $requestData['sName'],
             'first_name' => $requestData['fName'],
             'other_names' => $requestData['oNames'],
             'date_of_birth' => $requestData['dob'],

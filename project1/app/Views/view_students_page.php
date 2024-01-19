@@ -8,10 +8,9 @@
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
- /* Add your custom styles here */
+        /* Add your custom styles here */
         body {
-            margin: 0;
-            padding-top: 0px; /* Adjust based on your navbar height */
+            padding-top: 56px; /* Adjust based on your navbar height */
             margin-bottom: 70px; /* Adjust based on your footer height */
         }
 
@@ -20,6 +19,7 @@
             top: 0;
             z-index: 1000;
         }
+
         .table thead th {
             position: sticky;
             top: 56px; /* Adjust based on your navbar height */
@@ -45,15 +45,6 @@
             text-align: center;
             padding: 10px 0;
         }
-
-                /* Profile image placeholder */
-                .profile-img {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: #ddd; /* Placeholder background color */
-            margin-right: 10px;
-        }
     </style>
 </head>
 
@@ -74,46 +65,10 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Home</a>
                 </li>
-                <!-- Dropdown for Users -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="usersDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Users
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="usersDropdown">
-                        <a class="dropdown-item" href="#">View All</a>
-                        <a class="dropdown-item" href="#">Create</a>
-                    </div>
-                </li>
-                <!-- Dropdown for Students -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="studentsDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Students
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="studentsDropdown">
-                        <a class="dropdown-item" href="#">View All</a>
-                        <a class="dropdown-item" href="#">Create</a>
-                    </div>
-                </li>
-                <!-- Dropdown for Guardians -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="guardiansDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Guardians
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="guardiansDropdown">
-                        <a class="dropdown-item" href="#">View All</a>
-                        <a class="dropdown-item" href="#">Create</a>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
                 </li>
                 <!-- Add more quick links as needed -->
-
-
-                                <!-- Profile image placeholder -->
-                                <li class="nav-item">
-                    <div class="profile-img"></div>
-                </li>
             </ul>
         </div>
     </nav>
@@ -127,7 +82,7 @@
         $start = ($currentPage - 1) * $perPage + 1;
         $end = min($currentPage * $perPage, $total);
         ?>
-        <h2>User List - Showing Results from <?= $start ?> to <?= $end ?> of <?= $total ?></h2>
+        <h2>Students List - Showing Results from <?= $start ?> to <?= $end ?> of <?= $total ?></h2>
         <table class="table table-striped">
             <thead>
                 <tr>

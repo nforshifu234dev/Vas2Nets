@@ -1,8 +1,11 @@
-// File: app/Helpers/MyHelpers.php
 <?php
 
-if (!function_exists('generateRandomString')) {
-    function generateRandomString($length = 10) {
+namespace App\Helpers;
+
+class MyHelper {
+    // Your helper functions here
+
+    static function generateRandomString($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randomString = '';
 
@@ -12,4 +15,5 @@ if (!function_exists('generateRandomString')) {
 
         return $randomString;
     }
+
 }

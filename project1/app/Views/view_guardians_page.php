@@ -15,45 +15,62 @@
             margin-bottom: 70px; /* Adjust based on your footer height */
         }
 
-        .sticky-top {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .table thead th {
-            position: sticky;
-            top: 56px; /* Adjust based on your navbar height */
-            background-color: #f8f9fa; /* Choose a background color */
-        }
-
-        .pagination {
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .pagination li {
-            display: inline-block;
-            margin-right: 5px;
-        }
-
         /* Footer styles */
         footer {
-            position: fixed;
-            bottom: 0;
+            /* position: fixed; */
+            /* bottom: 0; */
             width: 100%;
             background-color: #f8f9fa;
             text-align: center;
             padding: 10px 0;
+            margin-top: 20px;
         }
 
-                /* Profile image placeholder */
-                .profile-img {
+        /* Profile image placeholder */
+        .profile-img {
             width: 30px;
             height: 30px;
             border-radius: 50%;
             background-color: #ddd; /* Placeholder background color */
             margin-right: 10px;
         }
+
+         /* Form styles */
+         .add-user-form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .form-group button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 
@@ -119,7 +136,8 @@
     </nav>
 
     <div class="container mt-5">
-        <?php
+
+    <?php
         // Calculate the range of displayed results
         $currentPage = $pager->getCurrentPage();
         $perPage = $pager->getPerPage();
@@ -127,25 +145,25 @@
         $start = ($currentPage - 1) * $perPage + 1;
         $end = min($currentPage * $perPage, $total);
         ?>
-        <h2>User List - Showing Results from <?= $start ?> to <?= $end ?> of <?= $total ?></h2>
+        <h2>Guardians List - Showing Results from <?= $start ?> to <?= $end ?> of <?= $total ?></h2>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>ID</th>
-                    <th>Surname</th>
-                    <th>First Name</th>
-                    <th>Other Names</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($users as $index => $user): ?>
                     <tr>
                         <td><?= $index + 1 + ($currentPage - 1) * $perPage ?></td>
-                        <td><?= $user['user_id'] ?></td>
-                        <td><?= $user['surname'] ?></td>
-                        <td><?= $user['first_name'] ?></td>
-                        <td><?= $user['other_names'] ?></td>
+                        <td><?= $user['id'] ?></td>
+                        <td><?= $user['name'] ?></td>
+                        <td><?= $user['email'] ?></td>
+                        <td><?= $user['phone'] ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

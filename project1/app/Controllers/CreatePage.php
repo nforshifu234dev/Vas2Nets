@@ -164,7 +164,7 @@ class CreatePage extends BaseController
             // Return success response
             $response = [
                 'status' => 'success',
-                'message' => 'User, guardian, and student created successfully',
+                'message' => 'account created successfully',
                 'data' => $requestData,
             ];
 

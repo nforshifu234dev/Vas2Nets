@@ -40,9 +40,20 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
         // console.log(document.querySelector('.main-container'));
 
-        const navbarHeight =document.querySelector('.navbar').offsetHeight;
+        const navbar = document.querySelector('.navbar');
 
-        const offset =navbarHeight > 0 ? -navbarHeight : 0;
+        let offset = false;
+
+        if( navbar )
+        {
+
+            const navbarHeight = document.querySelector('.navbar').offsetHeight;
+
+            offset =navbarHeight > 0 ? -navbarHeight : 0;
+
+        }
+
+
 
         if( formValidator.validate() )
         {
@@ -94,22 +105,34 @@ document.addEventListener('DOMContentLoaded', ()=>{
                             success: true,
                         }
 
+                        if ( response.redirect )
+                        {
+                            setTimeout(() => {
+                                window.location.href = response.redirect
+                            }, errorDetails.duration + 1000);
+                        }
+
                         formValidator.reset(form);                            
                     }
 
-                    form.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start',
-                        inline: 'start'
-                    });
+                    if( offset )
+                    {
 
-                    window.scrollBy(0, offset);
+                        form.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start',
+                            inline: 'start'
+                        });
+    
+                        window.scrollBy(0, offset);
+    
+                        // Force scroll to the top of the form even if an input is focused
+                        window.scrollTo({
+                            top: form.offsetTop + offset - 200,
+                            behavior: 'smooth'
+                        });
 
-                    // Force scroll to the top of the form even if an input is focused
-                    window.scrollTo({
-                        top: form.offsetTop + offset - 200,
-                        behavior: 'smooth'
-                    });
+                    }
 
                     formValidator.displayError(errorDetails);
 
@@ -125,13 +148,18 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
         }
 
-        form.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-            inline: 'start'
-        });
+        if( offset )
+        {
 
-        window.scrollBy(0, offset);
+            form.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+                inline: 'start'
+            });
+    
+            window.scrollBy(0, offset);
+
+        }
 
     });
 

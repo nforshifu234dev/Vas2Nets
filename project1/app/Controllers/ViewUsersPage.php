@@ -88,7 +88,7 @@ class ViewUsersPage extends BaseController
             // Return success response
             $response = [
                 'status' => 'success',
-                'message' => 'User, guardian, and student created successfully',
+                'message' => 'User created successfully',
                 'data' => $requestData,
             ];
 

@@ -27,3 +27,10 @@ $routes->get('guardians', 'ViewGuardiansPage::index');
 // File: app/Config/Routes.php
 $routes->get('contact', 'ContactPage::index');
 
+
+
+// app/Config/Routes.php
+
+$routes->get('login', 'AuthController::login');
+$routes->post('login', 'AuthController::attemptLogin');
+$routes->get('logout', 'AuthController::logout');

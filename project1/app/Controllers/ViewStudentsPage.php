@@ -163,7 +163,7 @@ class ViewStudentsPage extends BaseController
             // Return success response
             $response = [
                 'status' => 'success',
-                'message' => 'User, guardian, and student created successfully',
+                'message' => 'student created successfully',
                 'data' => $requestData,
             ];
 

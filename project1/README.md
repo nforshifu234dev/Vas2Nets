@@ -1,67 +1,83 @@
-# CodeIgniter 4 Application Starter
+# MiSchools - School Enrollment System
 
-## What is CodeIgniter?
+## Table of Contents
+1. [Overview](#overview)
+2. [Technologies Used](#technologies-used)
+3. [Features](#features)
+    - [User Features](#user-features)
+    - [Admin Features](#admin-features)
+    - [Shared Features](#shared-features)
+4. [Routes](#routes)
+    - [Regular Users and Students](#regular-users-and-students)
+    - [Admin Routes](#admin-routes)
+5. [Additional Information](#additional-information)
+    - [Developer](#developer)
+    - [Contact Information](#contact-information)
+    - [Licensing](#licensing)
+6. [Screenshots](#screenshots)
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Overview
+MiSchools is a comprehensive school enrollment system developed by NFORSHIFU234 Dev. It allows users to register as students, send inquiries through the contact form, and provides administrators with tools to manage users, students, and contact messages. The application features a secure login system with role-based access restrictions.
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## Technologies Used
+- **Backend Framework:** CodeIgniter
+- **PHP Version:** 8.2 and above
+- **Frontend:** HTML, CSS (Pure HTML for regular users, Bootstrap for administrators)
+- **Dependency Manager:** Composer
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## Features
 
-The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+### User Features
+1. **Enrollment:** Users can register as students, providing necessary information during the enrollment process.
+2. **Contact Form:** Allows users to send inquiries and messages to administrators.
 
-## Installation & updates
+### Admin Features
+1. **User Management:** Administrators can create new users and students.
+2. **Dashboard:** An interactive dashboard displays statistics and key information.
+3. **Contact Messages:** Admins can view and manage contact messages, including unread and unreplied ones.
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+### Shared Features
+1. **Form Validation:** Implemented using the NFSFU234FormValidation library, providing Ajax loading and error displaying.
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+## Routes
 
-## Setup
+### Regular Users and Students
+- `/enroll`: Enrollment feature for user registration as students.
+- `/contact`: Contact form for communication.
+- `/login`: Secure login system with role-based access.
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+### Admin Routes
+- `/dashboard`: Interactive dashboard displaying key statistics.
+- `/users`: User management for administrators.
+- `/users/new/`: Create New Users (regular and admins ).
+- `/students`: View and manage student information.
+- `/students/new/`: Create/Enroll a new student.
+- `/guardians`: View and manage student guardians information.
+- `/messages/`: View and manage contact messages.
 
-## Important Change with index.php
+## Additional Information
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+### Developer
+- **Name:** NFORSHIFU234 Dev 🖤👨🏾‍💻 || Shifu-Nfor Nyuiring-yoh Rhagninyui
+- **Username:** nforshifu234dev
+- **Social Media:** [@nforshifu234.dev](https://www.example.com)
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+### Contact Information
+- **X (Twitter):** [@nforshifu234dev](https://x.com/nforshifu234dev)
+- **GitHub:** [NFORSHIFU234Dev](https://github.com/nforshifu234dev)
+- **Instagram:** [@nforshifu234dev](https://www.instagram.com/nforshifu234dev)
 
-**Please** read the user guide for a better explanation of how CI4 works!
+### Licensing
+All rights and images used in this project belong to NFORSHIFU234 Dev.
 
-## Repository Management
+## Screenshots
+*Insert screenshots here*
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+*Screenshot 1: Dashboard*
+![Dashboard](path/to/dashboard-screenshot.png)
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+*Screenshot 2: Contact Form*
+![Contact Form](path/to/contact-form-screenshot.png)
 
-## Server Requirements
-
-PHP version 7.4 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> **Warning**
-> The end of life date for PHP 7.4 was November 28, 2022. If you are
-> still using PHP 7.4, you should upgrade immediately. The end of life date
-> for PHP 8.0 will be November 26, 2023.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+*Screenshot 3: User Enrollment*
+![User Enrollment](path/to/user-enrollment-screenshot.png)

@@ -20,7 +20,7 @@
  /* Add your custom styles here */
         body {
             margin: 0;
-            padding-top: 0px; /* Adjust based on your navbar height */
+            padding-top: 46px; /* Adjust based on your navbar height */
             margin-bottom: 70px; /* Adjust based on your footer height */
         }
 
@@ -108,64 +108,8 @@
 
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <a class="navbar-brand" href="#">
-            <img src="path-to-your-logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            Your Logo
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <!-- Dropdown for Users -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="usersDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Users
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="usersDropdown">
-                        <a class="dropdown-item" href="#">View All</a>
-                        <a class="dropdown-item" href="#">Create</a>
-                    </div>
-                </li>
-                <!-- Dropdown for Students -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="studentsDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Students
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="studentsDropdown">
-                        <a class="dropdown-item" href="#">View All</a>
-                        <a class="dropdown-item" href="#">Create</a>
-                    </div>
-                </li>
-                <!-- Dropdown for Guardians -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="guardiansDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Guardians
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="guardiansDropdown">
-                        <a class="dropdown-item" href="#">View All</a>
-                        <a class="dropdown-item" href="#">Create</a>
-                    </div>
-                </li>
-                <!-- Add more quick links as needed -->
+    <?php include_once APPPATH . 'views/navigation/topNav.php'; ?>
 
-
-                                <!-- Profile image placeholder -->
-                                <li class="nav-item">
-                    <div class="profile-img"></div>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
     <div class="container mt-5">
 
@@ -364,14 +308,8 @@
 
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2022 Your Company</p>
-            <p>Admin Menu: <a href="#">Dashboard</a> | <a href="#">Users</a> | <a href="#">Settings</a></p>
-            <p>Other Links: <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-        </div>
-    </footer>
+    <?php include_once APPPATH . 'views/navigation/footer.php'; ?>
+
 
     <!-- Include Bootstrap JS (Popper.js and jQuery are required for Bootstrap) -->
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->

@@ -43,4 +43,9 @@ class UserModel extends Model
         return $this->findAll();
     }
 
+    public function getLastUsers(int $number = 10)
+    {
+        return $this->orderBy('date_created', 'DESC')->limit($number)->findAll();
+    }
+
 }

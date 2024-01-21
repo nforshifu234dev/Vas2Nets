@@ -34,29 +34,38 @@ $routes->group('guardians', ['filter' => 'auth'], function ($routes) {
 });
 
 // Contact route
-$routes->get('contact', 'ContactPage::index');
+$routes->get('contact', 'ContactUsController::index');
+$routes->post('contact', 'ContactUsController::sendMessage');
 
 // Authentication routes
 $routes->get('login', 'AuthController::login');
 $routes->post('login', 'AuthController::attemptLogin');
 $routes->post('logout', 'AuthController::logout');
 
+// Dashboard Route
 $routes->get('dashboard', 'DashboardController::index');
 
+// $messages Route 
+$routes->get('messages', 'MessagesController::index', ['filter' => 'auth', 'auth.roles' => ['admin']] );
+
+// Admin Routes
 $routes->group('admin', ['filter' => 'auth', 'auth.roles' => ['admin']], function ($routes) {
     // Your admin routes go here
 });
 
+// User Routes
 $routes->group('users', ['filter' => 'auth', 'auth.roles' => ['user', 'editor']], function ($routes) {
     $routes->get('profile', 'UserController::profile');
     // Add more user-related routes as needed
 });
 
+// Student Routes
 $routes->group('students', ['filter' => 'auth', 'auth.roles' => ['student', 'editor']], function ($routes) {
     $routes->get('profile', 'StudentController::profile');
     // Add more student-related routes as needed
 });
 
+// Guardians Route
 $routes->group('guardians', ['filter' => 'auth', 'auth.roles' => ['guardian']], function ($routes) {
     $routes->get('profile', 'GuardianController::profile');
     // Add more guardian-related routes as needed

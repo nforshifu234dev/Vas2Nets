@@ -1,6 +1,6 @@
 {
-    "name": "NFSFUSchools",
-    "version": "0.7.0",
+    "name": "mischools",
+    "version": "1.0.0-alpha",
     "description": "School Website for User Account Creation and More",
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,9 +13,10 @@
       "school",
       "website",
       "account creation",
-      "php"
+      "php",
+      "code igniter"
     ],
-    "author": "Shifu-Nfor Nyuiring-yoh RHagninyui",
+    "author": "Shifu-Nfor Nyuiring-yoh Rhagninyui",
     "license": "MIT",
     "bugs": {
       "url": "https://github.com/nforshifu234dev/school-website/issues"

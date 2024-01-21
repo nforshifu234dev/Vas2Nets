@@ -4,36 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class StudentModel extends Model
+class ContactUsModel extends Model
 {
-    protected $table            = 'students';
-    protected $primaryKey       = 'id';
+    protected $table            = 'contacts';
+    protected $primaryKey       = 'SN';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-
-    // Define the allowed fields for mass assignment
-    protected $allowedFields    = [
-        'user_id',
-        'guardian_id',
-        'surname_name',
-        'first_name',
-        'other_names',
-        'date_of_birth',
-        'gender',
-        'nationality',
-        'country_code',
-        'phone_number',
-        'street',
-        'city',
-        'state',
-        'zipcode',
-        'academic_session',
-        'enrollment_type',
-        'program',
-        // Add other fields that you want to allow for mass assignment
-    ];
+    protected $allowedFields = ['name', 'email', 'message', 'mailid', 'date_time_sent', 'userid', 'has_viewed', 'has_replied', 'replied_message', 'date_time_replied', 'who_replied'];
 
     // Dates
     protected $useTimestamps = false;
@@ -59,9 +38,15 @@ class StudentModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function getLastStudents(int $number = 10)
+    public function getLastMessages(int $number = 10)
     {
-        return $this->orderBy('SN', 'DESC')->limit($number)->findAll();
+        return $this->orderBy('date_created', 'DESC')->limit($number)->findAll();
+    }
+
+    public function getLastUnreadMessages(int $number = 10)
+    {
+        // return $this->orderBy('date_created', 'DESC')->limit($number)->findAll();
+        return $this->orderBy('date_time_sent', 'DESC')->where('has_viewed', 0)->limit($number)->findAll();
     }
 
 }

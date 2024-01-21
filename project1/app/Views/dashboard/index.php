@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,96 +20,236 @@
             padding: 10px 0;
             background-color: #f8f9fa;
         }
+        .heading a
+        {
+            color: red ;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+        .heading a:hover
+        {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="#">
-            <img src="path-to-your-logo.png" alt="Your Logo" height="30" class="d-inline-block align-top">
-            Your Logo
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="usersDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Users
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="usersDropdown">
-                        <a class="dropdown-item" href="#">View All</a>
-                        <a class="dropdown-item" href="#">Create</a>
+    <?php include_once APPPATH . 'views/navigation/topNav.php'; ?>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <!-- Add your tables, charts, and other content here -->
+        <h1>My Dashboard</h1>
+
+        <section>
+
+            <div class="container mt-4">
+                <!-- Banner -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card bg-primary text-white">
+                            <div class="card-body">
+                                <h2 class="card-title">Dashboard Overview</h2>
+                                <p class="card-text">Check out the key metrics for your dashboard.</p>
+                            </div>
+                        </div>
                     </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="studentsDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Students
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="studentsDropdown">
-                        <a class="dropdown-item" href="#">View All</a>
-                        <a class="dropdown-item" href="#">Create</a>
+                </div>
+
+                <!-- Metrics Cards -->
+                <div class="row mt-4">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Users</h5>
+                                <p class="card-text"><?= $totalNumberOfUsers ?></p>
+                            </div>
+                        </div>
                     </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="guardiansDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Guardians
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="guardiansDropdown">
-                        <a class="dropdown-item" href="#">View All</a>
-                        <a class="dropdown-item" href="#">Create</a>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Guardians</h5>
+                                <p class="card-text"><?= $totalNumberOfGuardians ?></p>
+                            </div>
+                        </div>
                     </div>
-                </li>
-                <li class="nav-item">
-                    <!-- Example form for logout -->
-                    <form action="<?= site_url('logout') ?>" method="post" class="nav-link">
-                        <?= csrf_field() ?>
-                        <!-- Add any additional fields or styling as needed -->
-                        <button type="submit" class="btn btn-link">Logout</button>
-                    </form>
-                </li>
-                <!-- Add more quick links as needed -->
-                <li class="nav-item">
-                    <!-- Profile image placeholder -->
-                    <div class="profile-img"></div>
-                </li>
-            </ul>
-        </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Students</h5>
+                                <p class="card-text"><?= $totalNumberOfStudents ?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Contact Messages</h5>
+                                <p class="card-text"><span class="text-danger"><?= $totalNumberOfUnreadMessages ?> unread</span> . <span class="text-warning"><?= $totalNumberOfUnrepliedMessages ?> unreplied</span> . <?= $totalNumberOfMessages ?> total</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Metrics Cards as needed -->
+            </div>
+
+
+        </section>
+
+        <section>
+
+            <div class="container mt-4">
+
+                <div class="row ">
+                    <div class="col-md-6">
+                        <!-- Add another table as needed -->
+                        <div class="heading d-flex align-items-center justify-content-between bg-dark text-white p-2 mb-2">
+                            <h2>Last 10 Messages   </h2>
+                            <span><a href="#">View All</a></span>
+                        </div>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>SN</th>
+                                    <th>Contact Name</th>
+                                    <th>Contact EMail</th>
+                                    <th>Date & Time Sent</th>
+                                    <th>Is a User?</th>
+                                    <!-- Add more headers as needed -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($lastMessages as $key => $message) : ?>
+                                    <tr>
+                                        <td><?= $key + 1 ?></td>
+                                        <td><?= $message['name']; ?></td>
+                                        <td><?= $message['email']; ?></td>
+                                        <td><?= $message['date_time_sent']; ?></td>
+                                        <td><?= $message['user_id'] !== null ? 'Yes' : 'No' ?></td>
+                                        <!-- Add more cells as needed -->
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="col-md-6">
+                        <!-- Students Table -->
+                        <div class="heading d-flex align-items-center justify-content-between bg-dark text-white p-2 mb-2">
+
+                            <h2>Last 10 Students</h2>
+                            <a href="/students/">View All</a>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>SN</th>
+                                    <th>Student Surame</th>
+                                    <th>Student Name(s)</th>
+                                    <th>DOB</th>
+                                    <th>Academic Session</th>
+                                    <!-- Add more headers as needed -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($lastStudents as $key => $student) : ?>
+                                    <tr>
+                                        <td><?= $key + 1 ?></td>
+                                        <td><?= $student['surname']; ?></td>
+                                        <td><?= $student['first_name']; ?></td>
+                                        <td><?= $student['date_of_birth']; ?></td>
+                                        <td><?= $student['academic_session']; ?></td>
+                                        <!-- Add more cells as needed -->
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="heading d-flex align-items-center justify-content-between bg-dark text-white p-2 mb-2">
+                            <h2>Last 10 Users</h2>
+                            <a href="/users/">View All</a>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>SN</th>
+                                    <th>Name</th>
+                                    <th>Username</th>
+                                    <th>Role</th>
+                                    <!-- Add more headers as needed -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($lastUsers as $key => $user) : ?>
+                                    <tr>
+                                        <td><?= $key + 1?></td>
+                                        <td><?= $user['surname'] . ' ' . $user['first_name'] . ' ' .  $user['other_names']; ?></td>
+                                        <td><?= $user['username']; ?></td>
+                                        <td><?= $user['role']; ?></td>
+                                        <!-- Add more cells as needed -->
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table">
+                            <!-- Table Headers and Body for Guardians -->
+                            <!-- Guardians Table -->
+                            <div class="heading d-flex align-items-center justify-content-between bg-dark text-white p-2 mb-2">
+                                <h2>Last 10 Guardians</h2>
+                                <a href="/guardians/">View All</a>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>SN</th>
+                                        <th>Guardian Name</th>
+                                        <th>Guardian Role</th>
+                                        <th>Guardian Child ID</th>
+                                        <!-- Add more headers as needed -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($lastGuardians as $key => $guardian) : ?>
+                                        <tr>
+                                            <td><?= $key + 1?></td>
+                                            <td><?= $guardian['name']; ?></td>
+                                            <td><?= $guardian['role']  ?? ! empty($guardian['role']) ? $guardian['role'] : '---' ?></td>
+                                            <td><?= $guardian['child_user_id']; ?></td>
+                                            <!-- Add more cells as needed -->
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </section>
+
+        <!-- Add your content here -->
     </div>
-</nav>
 
-<!-- Main Content -->
-<div class="container mt-4">
-    <!-- Add your tables, charts, and other content here -->
-    <h1>Your Dashboard</h1>
-    <!-- Add your content here -->
-</div>
+    <?php include_once APPPATH . 'views/navigation/footer.php'; ?>
 
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <p>&copy; <?= date('Y') ?> Your Company</p>
-        <p>Admin Menu: <a href="#">Dashboard</a> | <a href="#">Users</a> | <a href="#">Settings</a></p>
-        <p>Other Links: <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-    </div>
-</footer>
 
-<!-- Bootstrap JS and Popper.js (required for Bootstrap) -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script> -->
-<script src="http://localhost/@itms/bootstrap-5.1.3/bootstrap-5.1.3/dist/js/bootstrap.min.js"></script>
-<!-- Chart.js (if needed) -->
-<!-- Add other JS files as needed -->
+    <!-- Bootstrap JS and Popper.js (required for Bootstrap) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script> -->
+    <script src="http://localhost/@itms/bootstrap-5.1.3/bootstrap-5.1.3/dist/js/bootstrap.min.js"></script>
+    <!-- Chart.js (if needed) -->
+    <!-- Add other JS files as needed -->
 
 </body>
 </html>

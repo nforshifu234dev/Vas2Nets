@@ -18,6 +18,7 @@ class GuardianModel extends Model
         'name',
         'email',
         'phone',
+        'role',
         // Add other fields that you want to allow for mass assignment
     ];
     
@@ -45,4 +46,11 @@ class GuardianModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getLastGuardians(int $number = 10)
+    {
+        return $this->orderBy('SN', 'DESC')->limit($number)->findAll();
+    }
+
 }
+

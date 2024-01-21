@@ -32,6 +32,9 @@ class DashboardController extends Controller
             'totalNumberOfMessages' => count($ContactUsModel->findAll()),
             'totalNumberOfUnreadMessages' => $ContactUsModel->where('has_viewed', 0)->countAllResults(),
             'totalNumberOfUnrepliedMessages' => $ContactUsModel->where('has_replied', 0)->countAllResults(),
+            'totalNumberOfAdmins' => $userModel->where('role', 'admin')->countAllResults() ,
+            'totalNumberOfStudents' => $userModel->where('role', 'admin')->countAllResults() ,
+            'totalNumberOfUsers2' => $userModel->where('role', 'user')->countAllResults() ,
         ];
 
         return view('dashboard/index', $data);

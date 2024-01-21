@@ -86,7 +86,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Contact Messages</h5>
-                                <p class="card-text"><span class="text-danger"><?= $totalNumberOfUnreadMessages ?> unread</span> . <span class="text-warning"><?= $totalNumberOfUnrepliedMessages ?> unreplied</span> . <?= $totalNumberOfMessages ?> total</p>
+                                <p class="card-text"><span class="text-danger"><?= $totalNumberOfUnreadMessages ?> unread</span> . <?= $totalNumberOfMessages ?> total</p>
                             </div>
                         </div>
                     </div>
@@ -238,10 +238,113 @@
 
         </section>
 
+        <section>
+
+            <div class="container mt-4">
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <div class="heading d-flex align-items-center justify-content-between bg-dark text-white p-2 mb-2">
+                            <h2>User Role Chart Data</h2>
+                        </div>
+
+                        <div class="canvas">
+
+                            <canvas id="userRoleChart" width="200" height="100"></canvas>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="heading d-flex align-items-center justify-content-between bg-dark text-white p-2 mb-2">
+                            <h2>Messages Chart Data</h2>
+                        </div>
+
+                        <div class="canvas">
+
+                            <canvas id="messageStatusChart" width="400" height="300"></canvas>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            
+            </div>
+
+        </section>
+
         <!-- Add your content here -->
     </div>
 
+    <script src="http://localhost/@itms/chart.js"></script>
+
+    <script>
+
+        // Example data (replace with actual data from your server)
+        const userData = {
+            labels: ['Admin', 'User', 'Student'],
+            datasets: [{
+                data: [<?= $totalNumberOfAdmins ?>, <?= $totalNumberOfUsers2 ?>, <?= $totalNumberOfStudents ?>], // Replace with the actual counts for each role
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+            }],
+        };
+
+        // Get the pie chart canvas element
+        const ctx = document.getElementById('userRoleChart').getContext('2d');
+
+        // Create a pie chart
+        const myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: userData,
+        });
+
+    </script>
+
+    <script>
+
+        // Example data (replace with actual data from your server)
+        const messageStatusData = {
+            labels: ['Total', 'Unread', 'UnReplied'],
+            datasets: [{
+                label: 'Message Status',
+                data: [<?= $totalNumberOfMessages ?>, <?= $totalNumberOfUnreadMessages ?>, <?= $totalNumberOfUnrepliedMessages ?>], // Replace with actual counts for each status
+                backgroundColor: ['#3498db', '#e74c3c', '#2ecc71'],
+            }],
+        };
+
+        // Get the bar chart canvas element
+        const messageStatusCtx = document.getElementById('messageStatusChart').getContext('2d');
+
+        // Create a bar chart
+        const messageStatusChart = new Chart(messageStatusCtx, {
+            type: 'bar',
+            data: messageStatusData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        grid: {
+                            display: false,
+                        },
+                    },
+                    y: {
+                        beginAtZero: true,
+                    },
+                },
+            },
+        });
+
+    </script>
+
     <?php include_once APPPATH . 'views/navigation/footer.php'; ?>
+
+
 
 
     <!-- Bootstrap JS and Popper.js (required for Bootstrap) -->

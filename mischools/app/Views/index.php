@@ -7,10 +7,15 @@
     <meta name="csrf-token" content="<?= csrf_hash() ?>">
     <title>MiSchools - Welcome</title>
     <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
-    <script src="http://localhost/@itms/fontawesome-free-6.4.0-web/js/all.min.js"></script>
-    <!-- NFSFU234 Form Validation Library CDNs -->
-    <link rel="stylesheet" href="http://localhost/@libraries/NFSFU234-FormValidation/dist/css/nfsfu234FormValidation.min.css">
-    <script src="http://localhost/@libraries/NFSFU234-FormValidation/dist/js/nfsfu234FormValidation.js"></script>
+    <!-- Font Awesome CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- NFSFU234FormValidation CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nfsfu234-form-validation@latest/dist/css/nfsfu234FormValidation.min.css">
+
+    <!-- NFSFU234FormValidation JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/nfsfu234-form-validation@latest/dist/js/nfsfu234FormValidation.js"></script>
+    
     <script defer src="<?= base_url('js/script.js') ?>"></script>
 </head>
 <body>

@@ -3,6 +3,10 @@
 ## Table of Contents
 1. [Overview](#overview)
 2. [Technologies Used](#technologies-used)
+    - [CodeIgniter Framework](#codeigniter-framework)
+    - [PHP Version](#php-version)
+    - [NFSFU234FormValidation Library](#nfsfu234formvalidation-library)
+    - [REST Countries API](#rest-countries-api)
 3. [Features](#features)
     - [User Features](#user-features)
     - [Admin Features](#admin-features)
@@ -20,10 +24,17 @@
 MiSchools is a comprehensive school enrollment system developed by NFORSHIFU234 Dev. It allows users to register as students, send inquiries through the contact form, and provides administrators with tools to manage users, students, and contact messages. The application features a secure login system with role-based access restrictions.
 
 ## Technologies Used
-- **Backend Framework:** CodeIgniter
-- **PHP Version:** 8.2 and above
-- **Frontend:** HTML, CSS (Pure HTML for regular users, Bootstrap for administrators)
-- **Dependency Manager:** Composer
+### CodeIgniter Framework
+MiSchools utilizes the CodeIgniter framework for building a robust and scalable backend.
+
+### PHP Version
+The application requires PHP version 8.2 and above for compatibility.
+
+### NFSFU234FormValidation Library
+Form validation is implemented using the NFSFU234FormValidation library, providing Ajax loading and error displaying for a seamless user experience.
+
+### REST Countries API
+The REST Countries API is integrated for retrieving and displaying country names and call codes in the enrollment form.
 
 ## Features
 
@@ -37,7 +48,7 @@ MiSchools is a comprehensive school enrollment system developed by NFORSHIFU234 
 3. **Contact Messages:** Admins can view and manage contact messages, including unread and unreplied ones.
 
 ### Shared Features
-1. **Form Validation:** Implemented using the NFSFU234FormValidation library, providing Ajax loading and error displaying.
+1. **Form Validation:** Implemented using the [NFSFU234FormValidation library](https://nfsfu234-form-validation.netlify.app/), providing Ajax loading and error displaying.
 
 ## Routes
 
@@ -60,7 +71,7 @@ MiSchools is a comprehensive school enrollment system developed by NFORSHIFU234 
 ### Developer
 - **Name:** NFORSHIFU234 Dev 🖤👨🏾‍💻 || Shifu-Nfor Nyuiring-yoh Rhagninyui
 - **Username:** nforshifu234dev
-- **Social Media:** [@nforshifu234.dev](https://www.example.com)
+- **Social Media:** [@nforshifu234.dev](https://www.linktr.ee/nforshifu234dev/)
 
 ### Contact Information
 - **X (Twitter):** [@nforshifu234dev](https://x.com/nforshifu234dev)

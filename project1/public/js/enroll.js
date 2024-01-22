@@ -150,7 +150,26 @@ function listenToCheckUsername()
                                 duration: 3000,
                                 element: usernameInputFeild,
                                 success: false,
-                              }
+                            }
+
+                            if ( response.message === 'username already taken' )
+                            {
+                                showStep(6);
+                                const allInputsInThisSection = document.getElementById(`jsStep${6}`).querySelectorAll('input');
+
+                                allInputsInThisSection[0].focus();
+
+                                errorDetails = {
+                                    type : 'inline',
+                                    message: response.message,
+                                    duration: 3000,
+                                    element: allInputsInThisSection[0],
+                                    success: false,
+                                }
+                                
+                                formValidator.displayError(errorDetails);
+
+                            }
                               
         
                         }

@@ -184,8 +184,8 @@ a{
     letter-spacing: 1.5px;
     color: var(--text-dark);
     /* border: blue solid 2px; */
-    border-radius: 15px 50px;
     transition: 0.5s background ease-in-out;
+    border-radius: 15px 50px;
 }
 
 .navigation .nav-menu .nav-menu-item:hover,
@@ -194,6 +194,11 @@ a{
     /* border-bottom: 1px solid var(--text-dark); */
     background: var(--primary-color);
     color: var(--text-white);
+}
+
+.navigation .nav-menu .nav-menu-item.active.nav-menu-item-login-btn
+{
+    border-radius: 50px 15px;
 }
 
 .navigation .nav-menu .nav-menu-item.callToAction

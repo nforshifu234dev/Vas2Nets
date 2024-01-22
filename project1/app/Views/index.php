@@ -61,6 +61,7 @@
                 <a href="#fees" class="nav-menu-item">fees</a>
                 <a href="#testimonials" class="nav-menu-item">testimonials</a>
                 <a href="/enroll/" class="nav-menu-item active">Enroll</a>
+                <a href="/login/" class="nav-menu-item nav-menu-item-login-btn active">Login</a>
 
             </div>
 

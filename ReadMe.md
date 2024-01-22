@@ -46,7 +46,8 @@ Brief description of how the repository is organized, including folders, project
 
 List of projects completed during the internship with brief descriptions and links to their respective folders or documentation.
 
-1. [MiSchools](/mischools/)
+1.  ![NFORSHIFU234 Dev](/assets/project_covers/mischools.png)
+    [MiSchools](/mischools/)
     MiSchools, a project by NFORSHIFU234 Dev, is your a school enrollment system. Seamlessly register as a student, fire off inquiries via the contact form, and empower administrators to manage users and messages. With a robust login system, it's crafted using CodeIgniter, HTML, CSS, Bootstrap, and a dash of RestCountries API magic. Check out the [repository](/mischools/) for a closer look.
 ---
 <div align="center">&copy; Jan - Jun 2024</div>

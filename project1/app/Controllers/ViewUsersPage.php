@@ -67,6 +67,16 @@ class ViewUsersPage extends BaseController
 
         $requestData = $request->getJSON(true)['formDetails'];
 
+        if ( $this->userModel->where('username', $requestData['user_username'])->countAllResults() >= 1 )
+        {
+            $response = [
+                'status' => 'failure',
+                'message' => 'username already taken',
+            ];
+
+            return $this->response->setStatusCode(200)->setJSON($response);
+        }
+
         $userId = 'USER_' . RandomStringGenerator::generateRandomString(30);
 
         $userInserted = $this->userModel->insert([

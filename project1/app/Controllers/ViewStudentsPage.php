@@ -100,6 +100,17 @@ class ViewStudentsPage extends BaseController
 
         // exit;
 
+        
+        if ( $userModel->where('username', $requestData['user_username'])->countAllResults() >= 1 )
+        {
+            $response = [
+                'status' => 'failure',
+                'message' => 'username already taken',
+            ];
+
+            return $this->response->setStatusCode(200)->setJSON($response);
+        }
+
     // Generate unique IDs for user and guardian
     $userId = 'USER_' . RandomStringGenerator::generateRandomString(30);
     $guardianId = 'GUARDIAN_' . RandomStringGenerator::generateRandomString(30);

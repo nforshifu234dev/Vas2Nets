@@ -365,6 +365,7 @@
                         <label for="">Password <span class="requiredLabel"></span></label>
                         <div class="input">
                             <input type="password" name="user_password" placeholder="********" required>
+                            <div class="js-togglePassword cssShowPassword"><i class="fas fa-eye"></i></div>
                         </div>
                     </div>
 

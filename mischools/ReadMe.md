@@ -82,13 +82,26 @@ The REST Countries API is integrated for retrieving and displaying country names
 All rights and images used in this project belong to NFORSHIFU234 Dev.
 
 ## Screenshots
-*Insert screenshots here*
 
-*Screenshot 1: Dashboard*
-![Dashboard](path/to/dashboard-screenshot.png)
+### Home
+![Home 1](preview/home_page.png) | ![Home 2](preview/home_page_2.png) | ![Home 3](preview/home_page_3.png) | ![Home 4](preview/home_page_4.png) | ![Home ](preview/home_page_5.png) | ![Home ](preview/home_page_6.png) | ![Home ](preview/home_page_7.png)
 
-*Screenshot 2: Contact Form*
-![Contact Form](path/to/contact-form-screenshot.png)
+### Enroll / Signup
+![Enroll 1](preview/enroll_page.png)
 
-*Screenshot 3: User Enrollment*
-![User Enrollment](path/to/user-enrollment-screenshot.png)
+### Login
+![Login 1](preview/login_page.png) 
+
+### Dashboard
+![Dashboard 1](preview/dashboard_1.png) | ![Dashboard 2](preview/dashboard_2.png) | ![Dashboard 3](preview/dashboard_3.png) | ![Dashboard 4](preview/dashboard_4.png)
+
+### Users
+![Users 1](preview/new_users_page.png) | ![Users 2](preview/view_users_page.png)
+
+### Guardians
+![Guardians 1](preview/view_guardians_page.png) 
+
+
+### Students
+![Students 1](preview/new_students_page.png) | ![Students 2](preview/view_students_page.png)
+

@@ -13,10 +13,13 @@ class AuthFilter implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $session = \Config\Services::session();
+        $current_url = current_url();
+        $csrf_token = csrf_token();
+
 
         // Check if the user is logged in
         if (!$session->has('user_id')) {
-            return redirect()->to(base_url('/login'));
+            return redirect()->to(site_url('login/?type=not_logged_in&crsf=' . $csrf_token . '&return_url=' . $current_url ));
         }
 
         // Check user role

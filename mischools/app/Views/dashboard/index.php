@@ -107,7 +107,7 @@
                         <!-- Add another table as needed -->
                         <div class="heading d-flex align-items-center justify-content-between bg-dark text-white p-2 mb-2">
                             <h2>Last 10 Messages   </h2>
-                            <span><a href="#">View All</a></span>
+                            <span><a href="/messages/">View All</a></span>
                         </div>
 
                         <table class="table">
@@ -311,7 +311,7 @@
         const messageStatusData = {
             labels: ['Total', 'Unread', 'UnReplied'],
             datasets: [{
-                label: 'Message Status',
+                label: 'Messages',
                 data: [<?= $totalNumberOfMessages ?>, <?= $totalNumberOfUnreadMessages ?>, <?= $totalNumberOfUnrepliedMessages ?>], // Replace with actual counts for each status
                 backgroundColor: ['#3498db', '#e74c3c', '#2ecc71'],
             }],

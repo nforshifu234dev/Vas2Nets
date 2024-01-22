@@ -1,6 +1,6 @@
 {
     "name": "mischools",
-    "version": "1.0.0-alpha",
+    "version": "1.0.0",
     "description": "School Website for User Account Creation and More",
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1"

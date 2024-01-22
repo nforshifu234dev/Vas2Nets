@@ -19,6 +19,9 @@ class AuthController extends Controller
 
     public function login()
     {
+        if ($this->session->has('user_id')) {
+            return redirect()->to(site_url('dashboard/'));
+        }
         return view('auth/login');
     }
 
@@ -29,6 +32,7 @@ class AuthController extends Controller
         $username = $requestData['username'];
         $password = $requestData['password'];
         $rememberMe = $requestData['remember_me'];
+        $redirect = $requestData['return_url'];
     
         $userModel = new UserModel();
         $user = $userModel->where('username', $username)->first() ?? $userModel->where('email', $username)->first() ?? false;
@@ -47,7 +51,13 @@ class AuthController extends Controller
             }
     
             // Return success JSON response
-            return $this->response->setJSON(['status' => 'success', 'message' => 'Login successful', 'redirect' => '/dashboard']);
+            return $this->response->setJSON(
+                [
+                    'status' => 'success', 
+                    'message' => 'Login successful', 
+                    'redirect' => $redirect && $redirect !== '' ? $redirect : '/dashboard'
+                ]
+            );
         } else {
             // Return error JSON response
             return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid username']);

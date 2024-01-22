@@ -6,6 +6,29 @@ let debounceTimer;
 
 const formValidator = new NFSFU234FormValidation();
 
+const generatePasswordBtn = form.querySelector('#jsGeneratePassword');
+
+if (generatePasswordBtn) {
+    // Function to generate and set random password
+    const setRandomPassword = () => {
+        const randomPassword = formValidator.generateRandomPassword();
+        form.querySelectorAll('.js-v-genPassword').forEach(
+            input => input.value = randomPassword
+        );
+    };
+
+    // Add click event listener
+    generatePasswordBtn.addEventListener('click', setRandomPassword);
+
+    // Optionally, you can remove the listener after it's triggered once
+    // generatePasswordBtn.addEventListener('click', setRandomPassword, { once: true });
+}
+
+if ( document.querySelector('.js-togglePassword') )
+{
+    formValidator.togglePasswordVisibility({ 'show': '<i class="fas fa-eye"></i>', 'hide': '<i class="fas fa-eye-slash"></i>' }, form);
+}
+
 function showStep(stepNumber) {
     
     const steps = form.querySelectorAll('.step');
@@ -123,80 +146,78 @@ function listenToCheckUsername()
 
     usernameInputFeild.addEventListener('change', ()=>{
 
-        // debounce( ()=>{
 
-            if ( usernameInputFeildValue !== '' )
-            {
+        if ( usernameInputFeildValue !== '' )
+        {
 
-                const AJAXOptions = {
-                    url: '/api/check-username/', // URL for the AJAX request
-                    RequestMethod: 'GET', // Request method
-                    RequestHeader: {
-                      'Content-Type': 'application/json', // Example request header
-                    },
-                };
+            const AJAXOptions = {
+                url: '/api/check-username/', // URL for the AJAX request
+                RequestMethod: 'GET', // Request method
+                RequestHeader: {
+                    'Content-Type': 'application/json', // Example request header
+                },
+            };
 
-                formValidator.ajax(AJAXOptions)
-                    .then( response =>{
+            formValidator.ajax(AJAXOptions)
+                .then( response =>{
 
-                        let errorDetails;
+                    let errorDetails;
 
-                        if ( response.status !== 'success' )
+                    if ( response.status !== 'success' )
+                    {
+    
+                        errorDetails = {
+                            type : 'inline',
+                            message: response.message,
+                            duration: 3000,
+                            element: usernameInputFeild,
+                            success: false,
+                        }
+
+                        if ( response.message === 'username already taken' )
                         {
-        
+                            showStep(6);
+                            const allInputsInThisSection = document.getElementById(`jsStep${6}`).querySelectorAll('input');
+
+                            allInputsInThisSection[0].focus();
+
                             errorDetails = {
                                 type : 'inline',
                                 message: response.message,
                                 duration: 3000,
-                                element: usernameInputFeild,
+                                element: allInputsInThisSection[0],
                                 success: false,
                             }
+                            
+                            formValidator.displayError(errorDetails);
 
-                            if ( response.message === 'username already taken' )
-                            {
-                                showStep(6);
-                                const allInputsInThisSection = document.getElementById(`jsStep${6}`).querySelectorAll('input');
-
-                                allInputsInThisSection[0].focus();
-
-                                errorDetails = {
-                                    type : 'inline',
-                                    message: response.message,
-                                    duration: 3000,
-                                    element: allInputsInThisSection[0],
-                                    success: false,
-                                }
-                                
-                                formValidator.displayError(errorDetails);
-
+                        }
+                            
+    
+                    }
+                    else
+                    {
+                        errorDetails = {
+                            type : 'inline',
+                            message: response.message,
+                            duration: 3000,
+                            element: usernameInputFeild,
+                            success: true,
                             }
-                              
-        
-                        }
-                        else
-                        {
-                            errorDetails = {
-                                type : 'inline',
-                                message: response.message,
-                                duration: 3000,
-                                element: usernameInputFeild,
-                                success: true,
-                              }
-        
-                              
-                        }
-        
-                        formValidator.displayError(errorDetails);
+    
+                            
+                    }
+    
+                    formValidator.displayError(errorDetails);
 
-                    } )
-                    .catch((error) => {
-                        // Error: AJAX request failed or rejected
-                        console.error('Request failed', error);
-                    });
+                } )
+                .catch((error) => {
+                    // Error: AJAX request failed or rejected
+                    console.error('Request failed', error);
+                });
 
-            }
+        }
 
-        // }, 500 );
 
     })
 
@@ -241,13 +262,32 @@ function listenForSubmit() {
                 if ( response.status !== 'success' )
                 {
 
+                    if ( response.message === 'username already taken' )
+                    {
+                        showStep(6);
+                        const allInputsInThisSection = document.getElementById(`jsStep${6}`).querySelectorAll('input');
+
+                        allInputsInThisSection[0].focus();
+
+                        errorDetails = {
+                            type : 'inline',
+                            message: response.message,
+                            duration: 3000,
+                            element: allInputsInThisSection[0],
+                            success: false,
+                        }
+                        
+                        formValidator.displayError(errorDetails);
+
+                    }
+                        
                     errorDetails = {
                         type : 'modal',
                         message: response.message,
                         duration: 3000,
                         element: form,
                         success: false,
-                      }
+                    }
                       
 
                 }

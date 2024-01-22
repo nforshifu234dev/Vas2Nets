@@ -39,6 +39,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
     form.querySelector("button[type=submit]").addEventListener('click', ()=>{
 
         // console.log(document.querySelector('.main-container'));
+        const submitBtn = form.querySelector('button[type=submit]');
+
+        const intialContent = submitBtn.innerHTML;
+
+        formValidator.loading( `<i class="fas fa-spinner fa-spin"></i> Loading...` , submitBtn);
 
         const navbar = document.querySelector('.navbar');
 
@@ -74,6 +79,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 }
             };
 
+
+            formValidator.loading( `<i class="fas fa-spinner fa-spin"></i> Loading...` , submitBtn);
 
             formValidator.ajax(ajaxOptions)
                 .then((response) => {
@@ -115,6 +122,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
                         formValidator.reset(form);                            
                     }
 
+                    formValidator.loading( intialContent , submitBtn);
+
+
                     if( offset )
                     {
 
@@ -146,6 +156,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
 
+        }
+        else
+        {
+            formValidator.loading( intialContent , submitBtn);
         }
 
         if( offset )

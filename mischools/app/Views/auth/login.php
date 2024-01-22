@@ -75,6 +75,7 @@
                         <label for="">Password</label>
                         <div class="input">
                             <input type="password" name="password" placeholder="password" required>
+                            <div class="js-togglePassword cssShowPassword"><i class="fas fa-eye"></i></div>
                         </div>
                     </div>
 
@@ -84,6 +85,14 @@
                         </div>
                         <label for="rememberMe">Remember me</label>
                     </div>
+
+                    <?php
+                        // Check if the return_url parameter is set
+                        // $return_url = isset($_GET['return_url']) ? htmlspecialchars($_GET['return_url']) : '/dashboard';
+                        $return_url = isset($_GET['return_url']) ? $_GET['return_url'] : '/dashboard';
+                    ?>
+
+                    <input type="hidden" name="return_url" value="<?= $return_url ?>">
                     
                     <?= csrf_field() ?>
 

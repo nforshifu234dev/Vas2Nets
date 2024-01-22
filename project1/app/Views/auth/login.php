@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="<?= csrf_hash() ?>">
-    <title>Join Us This 2024 - </title>
+    <title>Log In into your Account </title>
     <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/enroll.css') ?>">
     <script src="http://localhost/@itms/fontawesome-free-6.4.0-web/js/all.min.js"></script>
@@ -47,14 +47,14 @@
     <div class="container">
 
         <div class="right">
-            <img src="assets/images/jjj/OIG.E_zkYfvENR7YG53ujih9.jpg" alt="">
+            <img src="<?= base_url('images/jjj/OIG.E_zkYfvENR7YG53ujih9.jpg') ?>" alt="">
         </div>
 
         <div class="left">
             
             <div class="text">
                 <!-- Already have an account? <a href="#">Log in</a> -->
-                Don't have an account? <a href="#">Sign Up</a>
+                Don't have an account? <a href="/enroll/">Sign Up</a>
             </div>
 
             <!-- <div class="title">Sign Up</div> -->

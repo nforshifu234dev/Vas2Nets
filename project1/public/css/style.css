@@ -13,7 +13,8 @@
 
 :root
 {
-    --primary-color: #0d41e1;
+    /* --primary-color: #0d41e1; */
+    --primary-color: #51c639;
     ---secondary-color: #e4bc7e;
     /* ---tertiary-color: ; */
     --text-white:#fff;
@@ -149,12 +150,12 @@ a{
 .navigation .logo
 {
     /* border: red solid 2px; */
-    max-width: 200px;
-    width: 200px;
+    max-width: 300px;
+    width: 250px;
     height: 100%;
     padding: 0.5rem;
     border-radius: 5px;
-    background: #d5d5d5;
+    /* background: #d5d5d5; */
 }
 
 .navigation .logo img
@@ -288,8 +289,8 @@ a{
     border-radius: 10px;
     margin-bottom: 10px;
     width: max-content;
-    border: var(---secondary-color) solid 1px;
-    color: var(---secondary-color);
+    border: var(--primary-color) solid 1px !important;
+    /* color: var(---primary-color); */
     background: var(--text-white);
     transition: 0.5s background ease-in-out;
 }
@@ -396,7 +397,7 @@ a{
 .footer .info
 {
     width: 35%;
-    background: var(--primary-color);
+    background: #313131;
     color: var(--text-white);
     padding: 1rem;
 }
@@ -481,8 +482,8 @@ a{
 
 .footer .menu-and-copyright
 {
-    background: var(---secondary-color);
-    color: var(--text-white);
+    /* background: var(---secondary-color); */
+    /* color: var(--text-white); */
     width: 100%;
     padding: 1rem;
     display: flex;
@@ -544,7 +545,7 @@ a{
 
 .footer .menu-and-copyright .menu .col .contents ul li a
 {
-    color: var(--text-white);
+    color: var(--text-dark);
     transition: 0.5s margin ease-in-out;
     text-transform: capitalize;
     letter-spacing: 1.5px;
@@ -687,6 +688,7 @@ section .heading .subtitle
 {
     display: flex;
     margin-top: 40px;
+    margin-bottom: 200px !important;
 }
 
 .values .left,
@@ -707,7 +709,10 @@ section .heading .subtitle
 .values .right .left-image
 {
     width: 100%;
-    background-color: red;
+    /* background-color: red; */
+    /* border: red solid 2px; */
+    height: 100%;
+    margin-top: 25%;
 }
 
 .values .right .other-images
@@ -720,9 +725,9 @@ section .heading .subtitle
 .values .right .image
 {
     /* border: var(--text-dark) solid 1px; */
-    border-radius: 5px;
+    /* border-radius: 5px; */
     overflow: hidden;
-    height: 50%;
+    height: 70%;
     margin-bottom: 5px;
     margin-right: 5px;
 }
@@ -773,7 +778,7 @@ section .heading .subtitle
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: var(---secondary-color);
+    background: var(--primary-color);
     color: var(--text-white);
     margin-right: 5px;
     display: flex;
@@ -814,9 +819,9 @@ section .heading .subtitle
         width: 100%;
     }
 
-    .values .left
+    .values .right
     {
-        margin-top: 20px;
+        margin-bottom: 150px !important;
     }
 
     .values .values-list .item
@@ -854,6 +859,8 @@ section .heading .subtitle
     height: 100%;
     -o-object-fit: cover;
     object-fit: cover;
+    -o-object-position: top;
+    object-position: top;
 }
 
 .why-us .right 
@@ -1017,12 +1024,14 @@ section .heading .subtitle
     width: 100%;
     padding: 0 1rem;
     margin: 10px 0;
+    border: 1px solid grey !important;
 }
 
 .contact .body .right .input textarea
 {
     height: 250px;
     resize: none;
+    padding: 0.5rem;
 }
 
 .contact .body .right .input button
@@ -1064,6 +1073,7 @@ section .heading .subtitle
 .fees
 {
     margin-top: 40px;
+    margin-bottom: 20px !important;
 }
 
 .fees .body

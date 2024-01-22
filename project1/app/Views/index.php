@@ -49,7 +49,7 @@
         <nav class="navigation">
 
             <div class="logo">
-                <img src="assets/images/bu_logo.png" alt="">
+                <img src="<?= base_url('images/logo.png') ?>" alt="Logo">
             </div>
 
             <div class="nav-menu">
@@ -60,6 +60,7 @@
                 <a href="#values" class="nav-menu-item">values</a>
                 <a href="#fees" class="nav-menu-item">fees</a>
                 <a href="#testimonials" class="nav-menu-item">testimonials</a>
+                <a href="/enroll/" class="nav-menu-item active">Enroll</a>
 
             </div>
 
@@ -71,13 +72,13 @@
 
         <section class="banner">
 
-            <img src="assets/images/pexels-shoeb-khan-2973323.jpg" alt="">
+            <img src="<?= base_url('images/jjj/OIG.Bl6oBYHM1T7HvTRodkkF.jpg') ?>" alt="">
 
             <div class="content">
 
                 <div class="left">
 
-                    <a href="#" class="link">
+                    <a href="/enroll/" class="link">
                         join our heroic journey
                         <i class="fas fa-plane-departure"></i>
                     </a>
@@ -90,11 +91,11 @@
 
                 <div class="right">
 
-                    <div class="title">we are set for the 2023/24 academic session.</div>
+                    <div class="title">we are set for the 2024/25 academic session.</div>
 
                     <div class="subtitle">are you? register now with us today.</div>
 
-                    <a href="#" class="btn">Enroll</a>
+                    <a href="/enroll/" class="btn">Enroll</a>
 
                 </div>
 
@@ -114,7 +115,7 @@
                 <div class="content">
 
                     <div class="left">
-                        <img src="assets/images/pexels-shoeb-khan-2973323.jpg" alt="">
+                        <img src="<?= base_url('images/jjj/OIG.jKpRgZijtLDrwD.HOzJu.jpg') ?>" alt="">
                     </div>
 
                     <div class="middle">
@@ -125,7 +126,7 @@
                     </div>
 
                     <div class="right">
-                        <img src="assets/images/pexels-ihsan-adityawarman-2480516.jpg" alt="">
+                        <img src="<?= base_url('images/jjj/OIG.rfsAuuDfkqdhrfQtMkVd.jpg') ?>" alt="">
                     </div>
 
                 </div>
@@ -258,17 +259,17 @@
                 <div class="right">
                     
                     <div class="left-image image">
-                        <img src="assets/images/20220124025852_s7df4.jpeg" alt="">
+                        <img src="<?= base_url('images/jjj/OIG.AshE8W_aSU9DvGoVH2CO.jpg') ?>" alt="">
                     </div>
 
                     <div class="other-images">
 
                         <div class="image">
-                            <img src="assets/images/frame-3183517@3x.png" alt="">
+                            <img src="<?= base_url('images/OIG.PDntxIr8XAbHOSrz7PO4.jpg') ?>" alt="">
                         </div>
 
                         <div class="image">
-                            <img src="assets/images/frame-3183519@3x.png" alt="">
+                            <img src="<?= base_url('images/jjj/OIG.QnbX50FsrGf3.W.yy53T.jpg') ?>" alt="">
                         </div>
 
                     </div>
@@ -281,7 +282,7 @@
 
                 <div class="left">
 
-                    <img src="assets/images/hero-14@3x.png" alt="">
+                    <img src="<?= base_url('images/OIG.PDntxIr8XAbHOSrz7PO4.jpg') ?>" alt="">
 
                 </div>
 
@@ -412,7 +413,7 @@
                             </div>
 
                             <div class="image">
-                                <img src="assets/images/20220124025852_s7df4.jpeg" alt="">
+                                <img src="<?= base_url('images/frame-3183517@3x.png') ?>" alt="">
                             </div>
 
                         </div>
@@ -432,7 +433,7 @@
                             </div>
 
                             <div class="image">
-                                <img src="assets/images/20220124025852_s7df4.jpeg" alt="">
+                                <img src="<?= base_url('images/20220124025852_s7df4.jpeg') ?>" alt="">
                             </div>
 
                         </div>
@@ -452,27 +453,7 @@
                             </div>
 
                             <div class="image">
-                                <img src="assets/images/20220124025852_s7df4.jpeg" alt="">
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="card">
-
-                        <div class="message">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus velit voluptatem perspiciatis at itaque omnis asperiores veniam dolorem modi! Provident dicta laboriosam cumque eaque sit exercitationem commodi dolor delectus eos sequi saepe, adipisci, labore facere quibusdam qui dolore doloribus beatae, ipsa ea expedita ad? Obcaecati iure doloribus at excepturi animi!
-                        </div>
-
-                        <div class="profile">
-
-                            <div class="means">
-                                via <span>youtube <i class="fab fa-youtube"></i> </span>
-                            </div>
-
-                            <div class="image">
-                                <img src="assets/images/20220124025852_s7df4.jpeg" alt="">
+                                <img src="<?= base_url('images/pexels-ihsan-adityawarman-2480516.jpg') ?>" alt="">
                             </div>
 
                         </div>
@@ -514,7 +495,7 @@
                     </div>
 
                     <div class="right">
-                        <img src="assets/images/pexels-pixabay-159775.jpg" alt="">
+                        <img src="<?= base_url('images/jjj/OIG.S8E18_fUsgL55_NFIa62.jpg') ?>" alt="">
                     </div>
 
                 </div>
@@ -582,7 +563,7 @@
             <div class="info">
 
                 <div class="logo">
-                    <img src="assets/images/bu_logo.png" alt="">
+                    <img src="<?= base_url('images/logo1.png') ?>" alt="Logo">
                 </div>
 
                 <section class="details">
@@ -616,13 +597,13 @@
                         <a href="#" class="number">
                             <span>support</span>
                             <i class="fas fa-envelope-open"></i>
-                           contact@addmission.com
+                           info@mischools.com
                         </a>
 
                         <a href="#" class="number">
                             <span>admission information</span>
                             <i class="fas fa-envelope-open"></i>
-                            addmission@domain.com
+                            addmission@mischools.com
                         </a>
 
                     </div>
@@ -638,7 +619,7 @@
 
                         </div>
 
-                        <span class="username">Babcock University</span>
+                        <span class="username">MiSchools</span>
 
                     </div>
 
@@ -721,7 +702,7 @@
                 </div>
 
                 <div class="copyright">
-                    &copy; 2023. Babacock University. All Rights Reserved
+                    &copy; <?= date('Y') ?>. MiSchools. All Rights Reserved
                 </div>
 
             </div>

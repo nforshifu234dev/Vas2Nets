@@ -105,6 +105,11 @@ function listenForSubmit() {
     
     form.querySelector("#jsEnroll").addEventListener('click', ()=>{
 
+        if ( !formValidator.validate() )
+        {
+            return false;
+        }
+
         const formDetails = formValidator.getFormDetails(form);
 
         // console.log(formDetails);

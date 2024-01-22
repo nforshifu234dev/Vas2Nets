@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="<?= csrf_hash() ?>">
 
-    <title>Join Us This 2024 - </title>
+    <title>Join Us This Season </title>
     <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/enroll.css') ?>">
     <script src="http://localhost/@itms/fontawesome-free-6.4.0-web/js/all.min.js"></script>
@@ -25,7 +25,7 @@
         <div class="left">
             
             <div class="text">
-                Already have an account? <a href="#">Log in</a>
+                Already have an account? <a href="/login/">Log in</a>
             </div>
 
             <div class="title">Sign Up</div>
@@ -85,7 +85,7 @@
                     <div class="input-feild">
                         <label for=""> Nationality <span class="requiredLabel"></span></label>
                         <div class="input">
-                            <select name="nationality" id="" required>
+                            <select name="nationality" id="jsNationalitySelect" required>
                                 <option value="">Choose Your Nationality</option>
                                 <option value="NG">Nigeria</option>
                                 <option value="CMR">Cameroon</option>
@@ -116,7 +116,7 @@
                         <div class="input-feild">
                             <label for="">Country Code <span class="requiredLabel"></span></label>
                             <div class="input">
-                                <select name="country_code" id="" required>
+                                <select name="country_code" id="jsCountryCode" required>
                                     <option value="">Choose your country code</option>
                                     <option value="234">Nigeria (+234)</option>
                                     <option value="237">Nigeria (+237)</option>
@@ -398,8 +398,8 @@
                     <div class="title"><i class="far fa-file-text"></i>  Terms & Conditions</div>
  
                     <div class="consent-banner">
-                        <img src="assets/images/jjj/OIG.S8E18_fUsgL55_NFIa62.jpg" alt="">
-                        <img src="assets/images/jjj/OIG.Bl6oBYHM1T7HvTRodkkF.jpg" alt="">
+                        <img src="<?= base_url('images/jjj/OIG.S8E18_fUsgL55_NFIa62.jpg') ?>" alt="">
+                        <img src="<?= base_url('images/jjj/OIG.Bl6oBYHM1T7HvTRodkkF.jpg') ?>" alt="">
                     </div>
 
                     <div class="input-feild d">
@@ -467,13 +467,82 @@
         </div>
 
         <div class="right">
-            <img src="assets/images/OIG.DZitqHgMjGBp.Ydxhstr.jpg" alt="">
+            <img src="<?= base_url('images/OIG.DZitqHgMjGBp.Ydxhstr.jpg') ?>" alt="">
         </div>
 
     </div>
 
     <!-- <script src="assets/js/enroll.js"></script> -->
     <script src="<?= base_url('js/enroll.js') ?>"></script>
+
+    <script>
+
+        const AJAXOptions = {
+            url: '<?= base_url('all_countries_info.json') ?>', // URL for the AJAX request
+            RequestMethod: 'GET', // Request method
+            RequestHeader: {
+              'Content-Type': 'application/json', // Example request header
+            },
+          };
+
+        formValidator.ajax(AJAXOptions)
+            .then( countriesData => {
+
+                const nationalityDropdown = document.getElementById('jsNationalitySelect');
+                nationalityDropdown.innerHTML = '';
+                nationalityDropdown.innerHTML = `<option value="">Choose Your Nationality</option>`;
+
+                const countryCodeDropdown = document.getElementById('jsCountryCode');
+                countryCodeDropdown.innerHTML = '';
+                countryCodeDropdown.innerHTML = `<option value="">Choose your country code</option>`;
+
+                countriesData = countriesData.sort( (a, b) =>{
+
+                    const nameA = a.name.common.toUpperCase();
+                    const nameB = b.name.common.toUpperCase();
+
+                    return nameA.localeCompare(nameB);
+
+                } );
+
+                
+                countriesData.forEach(country => {
+                    const countryName = country.name.common;
+                    const countryCode = country.cca2;  // Country code
+                    const suffixes = Array.isArray(country.idd.suffixes) ? country.idd.suffixes : [];
+                    
+                    let callCode;
+                    if (suffixes.length === 1) {
+                        // If there is only one suffix, display both the root and the single suffix
+                        callCode = country.idd.root + suffixes[0];
+                    } else {
+                        // If there is more than one suffix, display only the root
+                        callCode = country.idd.root;
+                    }
+
+                    const countryShortCode = country.ccn3;  // Numeric country code
+
+                    // Print or store the information as needed
+                    // console.log(`Country: ${countryName}, Code: ${countryCode}, Short Code: ${countryShortCode}`);
+
+                    let nationalityDropdownContent = document.createElement('option');
+                    nationalityDropdownContent.value = countryCode;
+                    nationalityDropdownContent.innerHTML = countryName;
+
+                    nationalityDropdown.appendChild(nationalityDropdownContent);
+
+                    let countryCodeDropdownContent = document.createElement('option');
+                    countryCodeDropdownContent.value = callCode;
+                    countryCodeDropdownContent.innerHTML = `${countryName} (${callCode})`;
+
+                    countryCodeDropdown.appendChild(countryCodeDropdownContent);
+                });
+
+
+            } )
+        
+
+    </script>
 
 </body>
 </html>

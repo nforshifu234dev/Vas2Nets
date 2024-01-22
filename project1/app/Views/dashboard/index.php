@@ -13,7 +13,7 @@
     <style>
         /* Add your custom styles here */
         body {
-            padding-top: 56px;
+            padding-top:75px;
         }
         footer {
             margin-top: 30px;

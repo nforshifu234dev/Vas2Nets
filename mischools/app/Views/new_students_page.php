@@ -335,7 +335,7 @@
         const formValidator = new NFSFU234FormValidation();
 
         const AJAXOptions = {
-            url: '<?= base_url('all_countries_info.json') ?>', // URL for the AJAX request
+            url: 'https://restcountries.com/v3.1/all/', // URL for the AJAX request
             RequestMethod: 'GET', // Request method
             RequestHeader: {
               'Content-Type': 'application/json', // Example request header

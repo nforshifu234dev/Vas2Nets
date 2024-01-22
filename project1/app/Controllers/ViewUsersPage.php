@@ -106,11 +106,48 @@ class ViewUsersPage extends BaseController
 
         }
 
-    // Return error response
+        // Return error response
         return $this->response
         ->setStatusCode(200) 
         ->setJSON(['error' => 'Failed to create user, guardian, and student']);
 
+
+    }
+
+    function checkUsername()
+    {
+
+        $request = service('request');
+        $validation = \Config\Services::validation();
+
+        $validationRules = [
+            'username' => 'required|max_length[50]',
+        ];
+
+        if ( $validation->setRules($validationRules)->run((array) $request->getJSON()) ) {
+            return $this->response
+                ->setStatusCode(400) // Bad Request
+                ->setJSON(['error' => $validation->getErrors()]);
+                }
+
+        $requestData = $request->getJSON(true)['formDetails'];
+
+        if ( $this->userModel->where('username', $requestData['username'])->countAllResults() >= 1 )
+        {
+            $response = [
+                'status' => 'failure',
+                'message' => 'username already taken',
+            ];
+
+            return $this->response->setStatusCode(200)->setJSON($response);
+        }
+
+        $response = [
+            'status' => 'success',
+            'message' => 'username available',
+        ];
+
+        return $this->response->setStatusCode(200)->setJSON($response);
 
     }
 

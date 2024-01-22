@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\ViewUsersPage;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -69,4 +70,11 @@ $routes->group('students', ['filter' => 'auth', 'auth.roles' => ['student', 'edi
 $routes->group('guardians', ['filter' => 'auth', 'auth.roles' => ['guardian']], function ($routes) {
     $routes->get('profile', 'GuardianController::profile');
     // Add more guardian-related routes as needed
+});
+
+// API ROUTES 
+$routes->group('api', [], function($routes){
+
+    $routes->get('check-username', 'ViewUsersPage::checkUsername');
+
 });

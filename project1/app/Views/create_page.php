@@ -217,10 +217,10 @@
                                 <option value="primary5">primary 5</option>
                                 <option value="primary6">primary 6</option>
                                 <option value="100">100 Level</option>
-                                <option value="200">200L</option>
-                                <option value="300">300L</option>
-                                <option value="400">400L</option>
-                                <option value="500">500L</option>
+                                <option value="200">200 Level</option>
+                                <option value="300">300 Level</option>
+                                <option value="400">400 Level</option>
+                                <option value="500">500 Level</option>
                             </select>
                         </div>
                     </div>

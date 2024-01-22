@@ -152,7 +152,7 @@
             <div class="form-group">
                 <label for="nationality">nationality:</label>
                 <div class="input">
-                    <select name="nationality" id="" required>
+                    <select name="nationality" id="jsNationalitySelect" required>
                         <option value="NG">Nigeria</option>
                         <option value="CMR">Cameroon</option>
                         <option value="FR">France</option>
@@ -169,7 +169,7 @@
             <div class="form-group">
                 <label for="country_code">country code:</label>
                 <div class="input">
-                    <select name="country_code" id="" required>
+                    <select name="country_code" id="jsCountryCode" required>
                         <option value="234">Nigeria (+234)</option>
                         <option value="237">Cameroon (+237)</option>
                         <option value="2">France (+2)</option>
@@ -235,10 +235,20 @@
                 <div class="input">
                     <select name="program" id="" required>
                         <option value="">choose program</option>
-                        <option value="100L">100 level</option>
-                        <option value="200L">200 level</option>
-                        <option value="300L">300 level</option>
-                        <option value="400L">400 level</option>
+                        <option value="kindergerten">Kindergerten</option>
+                        <option value="nusery1">nusery 1</option>
+                        <option value="nusery2">nusery 2</option>
+                        <option value="primary1">primary 1</option>
+                        <option value="primary2">primary 2</option>
+                        <option value="primary3">primary 3</option>
+                        <option value="primary4">primary 4</option>
+                        <option value="primary5">primary 5</option>
+                        <option value="primary6">primary 6</option>
+                        <option value="100">100 Level</option>
+                        <option value="200">200 Level</option>
+                        <option value="300">300 Level</option>
+                        <option value="400">400 Level</option>
+                        <option value="500">500 Level</option>
                     </select>
                 </div>
             </div>
@@ -322,94 +332,72 @@
 
     <script>
 
-        // const form = document.getElementById('form');
+        const formValidator = new NFSFU234FormValidation();
 
-        // // Example form details object
-        // const formDetails = {
-        //     form: form, // Replace "myForm" with the ID of your form or the actual HTML element of your form (recommended)
-        // };
+        const AJAXOptions = {
+            url: '<?= base_url('all_countries_info.json') ?>', // URL for the AJAX request
+            RequestMethod: 'GET', // Request method
+            RequestHeader: {
+              'Content-Type': 'application/json', // Example request header
+            },
+          };
 
+        formValidator.ajax(AJAXOptions)
+            .then( countriesData => {
+
+                const nationalityDropdown = document.getElementById('jsNationalitySelect');
+                nationalityDropdown.innerHTML = '';
+                nationalityDropdown.innerHTML = `<option value="">Choose Your Nationality</option>`;
+
+                const countryCodeDropdown = document.getElementById('jsCountryCode');
+                countryCodeDropdown.innerHTML = '';
+                countryCodeDropdown.innerHTML = `<option value="">Choose your country code</option>`;
+
+                countriesData = countriesData.sort( (a, b) =>{
+
+                    const nameA = a.name.common.toUpperCase();
+                    const nameB = b.name.common.toUpperCase();
+
+                    return nameA.localeCompare(nameB);
+
+                } );
+
+                
+                countriesData.forEach(country => {
+                    const countryName = country.name.common;
+                    const countryCode = country.cca2;  // Country code
+                    const suffixes = Array.isArray(country.idd.suffixes) ? country.idd.suffixes : [];
+                    
+                    let callCode;
+                    if (suffixes.length === 1) {
+                        // If there is only one suffix, display both the root and the single suffix
+                        callCode = country.idd.root + suffixes[0];
+                    } else {
+                        // If there is more than one suffix, display only the root
+                        callCode = country.idd.root;
+                    }
+
+                    const countryShortCode = country.ccn3;  // Numeric country code
+
+                    // Print or store the information as needed
+                    // console.log(`Country: ${countryName}, Code: ${countryCode}, Short Code: ${countryShortCode}`);
+
+                    let nationalityDropdownContent = document.createElement('option');
+                    nationalityDropdownContent.value = countryCode;
+                    nationalityDropdownContent.innerHTML = countryName;
+
+                    nationalityDropdown.appendChild(nationalityDropdownContent);
+
+                    let countryCodeDropdownContent = document.createElement('option');
+                    countryCodeDropdownContent.value = callCode;
+                    countryCodeDropdownContent.innerHTML = `${countryName} (${callCode})`;
+
+                    countryCodeDropdown.appendChild(countryCodeDropdownContent);
+                });
+
+
+            } )
         
-
-        // const formValidator = new NFSFU234FormValidation(formDetails);
-
-        // // formValidator.submit();
-
-        // form.querySelector("button[type=submit]").addEventListener('click', ()=>{
-
-        //     if( formValidator.validate() )
-        //     {
-
-        //         const formDetails = formValidator.getFormDetails();
-
-        //         console.log(form.querySelectorAll('input').length);
-        //         console.log(form.querySelectorAll('select').length);
-        //         console.log(formDetails);
-
-        //         // return true;
-
-        //         const ajaxOptions = {
-        //             url: "/students/new/",
-        //             RequestMethod: "POST",
-        //             RequestHeader: {
-        //                 "Content-Type": "application/json",
-        //                 "X-Requested-With": "XMLHttpRequest",
-        //                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-        //             },
-        //             RequestBody: {
-        //                 formDetails
-        //             }
-        //         };
-
-
-        //         formValidator.ajax(ajaxOptions)
-        //             .then((response) => {
-        //                 // Success: Server response received in JSON format
-        //                 // console.log('Request successful', response);
-
-        //                 let errorDetails;
-
-        //                 if ( response.status !== 'success' )
-        //                 {
-
-        //                     errorDetails = {
-        //                         type : 'modal',
-        //                         message: response.message,
-        //                         duration: 3000,
-        //                         element: form,
-        //                         success: false,
-        //                     }
-                            
-
-        //                 }
-        //                 else
-        //                 {
-        //                     errorDetails = {
-        //                         type : 'modal',
-        //                         message: response.message,
-        //                         duration: 3000,
-        //                         element: form,
-        //                         success: true,
-        //                     }
-
-        //                     formValidator.reset(form);                            
-        //                 }
-
-        //                 formValidator.displayError(errorDetails);
-
-
-
-        //             })
-        //             .catch((error) => {
-        //                 // Error: AJAX request failed or rejected
-        //                 console.error('Request failed', error);
-        //             });
-
-
-
-        //     }
-
-        // })
 
     </script>
 

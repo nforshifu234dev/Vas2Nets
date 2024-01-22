@@ -340,7 +340,7 @@
             RequestHeader: {
               'Content-Type': 'application/json', // Example request header
             },
-          };
+        };
 
         formValidator.ajax(AJAXOptions)
             .then( countriesData => {

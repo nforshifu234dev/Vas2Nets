@@ -357,7 +357,7 @@
                     <div class="input-feild d">
                         <label for="">Username <span class="requiredLabel"></span></label>
                         <div class="input">
-                            <input type="text" name="user_username" placeholder="Username" required>
+                            <input type="text" name="user_username" id="jsUsernameFeild" placeholder="Username" required>
                         </div>
                     </div>
 

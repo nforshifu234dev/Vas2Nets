@@ -1,6 +1,7 @@
 const form = document.querySelector('#jsEnrollForm');
 let currentStep = 1;
 let totalSteps = 7;
+let debounceTimer;
 
 
 const formValidator = new NFSFU234FormValidation();
@@ -75,6 +76,11 @@ function nextStep(nextStep) {
 
     }
 
+    if ( nextStep === 6 )
+    {
+        listenToCheckUsername();
+    }
+
     if ( nextStep === 7 )
     {
         listenForSubmit();
@@ -99,13 +105,91 @@ function prevStep(prevStep) {
 
 }
 
+function debounce(func, delay) {
+    
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout( ()=>{
+        func();
+    }, delay );
+
+}
+
+function listenToCheckUsername()
+{
+
+    const usernameInputFeild = form.querySelector("#jsUsernameFeild");
+    console.log(usernameInputFeild);
+    const usernameInputFeildValue = usernameInputFeild.value.trim();
+
+    usernameInputFeild.addEventListener('change', ()=>{
+
+        // debounce( ()=>{
+
+            if ( usernameInputFeildValue !== '' )
+            {
+
+                const AJAXOptions = {
+                    url: '/api/check-username/', // URL for the AJAX request
+                    RequestMethod: 'GET', // Request method
+                    RequestHeader: {
+                      'Content-Type': 'application/json', // Example request header
+                    },
+                };
+
+                formValidator.ajax(AJAXOptions)
+                    .then( response =>{
+
+                        let errorDetails;
+
+                        if ( response.status !== 'success' )
+                        {
+        
+                            errorDetails = {
+                                type : 'inline',
+                                message: response.message,
+                                duration: 3000,
+                                element: usernameInputFeild,
+                                success: false,
+                              }
+                              
+        
+                        }
+                        else
+                        {
+                            errorDetails = {
+                                type : 'inline',
+                                message: response.message,
+                                duration: 3000,
+                                element: usernameInputFeild,
+                                success: true,
+                              }
+        
+                              
+                        }
+        
+                        formValidator.displayError(errorDetails);
+
+                    } )
+                    .catch((error) => {
+                        // Error: AJAX request failed or rejected
+                        console.error('Request failed', error);
+                    });
+
+            }
+
+        // }, 500 );
+
+    })
+
+}
+
 
 
 function listenForSubmit() {
     
     form.querySelector("#jsEnroll").addEventListener('click', ()=>{
 
-        if ( !formValidator.validate() )
+        if ( !formValidator.validate(form) )
         {
             return false;
         }
